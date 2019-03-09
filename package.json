@@ -1,0 +1,22 @@
+{
+  "name": "control",
+  "version": "1.0.0",
+  "description": "Signal flow garph solver using vis js",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ahmedezeny/Signal-flow-graph-solver.git"
+  },
+  "author": "Ahmed Elzeny && Ahmed Abdallah",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ahmedezeny/Signal-flow-graph-solver/issues"
+  },
+  "homepage": "https://github.com/ahmedezeny/Signal-flow-graph-solver#readme",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
+}
