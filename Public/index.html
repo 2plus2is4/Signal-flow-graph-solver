@@ -25,33 +25,76 @@
 				return;
 			}
 			data.label=label;
-			callback(data);
+			$.post("api/node", data,function(result ){
+				callback(data);
+
+			});
 		};
 
 		var editNode = function(data, callback){
-			callback(data);	
-		};
-		
-		var deleteNode = function(data, callback){
-			callback(data);	
-		};
-
-		var addEdge = function(data, callback){
-			var label = prompt("enter the node name: ");
+			var label = prompt("enter the node name: ",data.label);
 			if(!label){
 				return;
 			}
 			data.label=label;
-			callback(data);	
+			$.ajax({
+				method:"put",
+				url: "/api/node",
+				data: data,
+				success: function(result){
+					callback(result);
+				}
+
+			});
+		};
+		
+		var deleteNode = function(data, callback){
+			$.ajax({
+				method:"delete",
+				url: "/api/node",
+				data: {node :data.nodes[0]},
+				success: function(result){
+					callback(result);
+				}
+
+			});		
+		};
+
+		var addEdge = function(data, callback){
+			var label = prompt("enter the edge name: ");
+			if(!label){
+				return;
+			}
+			data.label=label;
+			$.post("api/edge", data,function(result ){
+				callback(result);
+
+			});
 		};
 
 
 		var editEdge = function(data, callback){
-			callback(data);	
+			$.ajax({
+				method:"put",
+				url: "/api/edge",
+				data: data,
+				success: function(result){
+					callback(result);
+				}
+
+			});		
 		};
 		
 		var deleteEdge = function(data, callback){
-			callback(data);	
+			$.ajax({
+				method:"delete",
+				url: "/api/edge",
+				data: {edge :data.edges[0]},
+				success: function(result){
+					callback(result);
+				}
+
+			});		
 		};
 		
 

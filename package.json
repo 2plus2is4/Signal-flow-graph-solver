@@ -18,8 +18,11 @@
   },
   "homepage": "https://github.com/ahmedezeny/Signal-flow-graph-solver#readme",
   "dependencies": {
+    "body-parser": "^1.18.3",
     "express": "^4.16.4",
     "jquery": "^3.3.1",
+    "underscore": "^1.9.1",
+    "uuid-v4": "^0.1.0",
     "vis": "^4.21.0"
   }
 }
