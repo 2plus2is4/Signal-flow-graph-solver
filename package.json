@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/ahmedezeny/Signal-flow-graph-solver#readme",
   "dependencies": {
+    "@dagrejs/graphlib": "^2.1.4",
     "body-parser": "^1.18.3",
     "express": "^4.16.4",
     "jquery": "^3.3.1",
