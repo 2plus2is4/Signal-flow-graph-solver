@@ -5,6 +5,7 @@
 	<script type="text/javascript" src="vis/dist/vis.js"> </script>
 	<link href="vis/dist/vis.css" rel="stylesheet" type="text/css">
 	<script type="text/javascript" src="jquery/dist/jquery.js"> </script>
+	<script type="text/javascript" src="graphlib.min.js"></script>
 	<style type="text/css">
 		#graph{
 			width: 800px;
@@ -18,6 +19,10 @@
 	<div id="input"></div>
 	<div id="graph"></div>
 	<script type="text/javascript">
+		//imported.src = 'graphlib.m';
+		Graph = graphlib.Graph;
+		var g= new Graph();
+
 		var addNode = function(data, callback){
 				
 			var label = prompt("enter the node name: ");
@@ -29,6 +34,10 @@
 				callback(data);
 
 			});
+			//var myJSON = JSON.stringify(data);
+			g.setNode(data.id,data.id);
+			console.log(g.nodes());
+			//console.log(myJSON);
 		};
 
 		var editNode = function(data, callback){
@@ -46,6 +55,8 @@
 				}
 
 			});
+			g.setNode(data.id,data.label)
+			console.log(g.nodes());
 		};
 		
 		var deleteNode = function(data, callback){
@@ -57,7 +68,12 @@
 					callback(result);
 				}
 
-			});		
+			});
+
+			g.removeNode(data.id);
+			console.log(g.nodes());
+			console.log(g.removeNode(data.id));
+
 		};
 
 		var addEdge = function(data, callback){
@@ -68,8 +84,10 @@
 			data.label=label;
 			$.post("api/edge", data,function(result ){
 				callback(result);
-
 			});
+			g.setEdge(data.to,data.from);
+			console.log(g.edges());
+
 		};
 
 
@@ -82,7 +100,9 @@
 					callback(result);
 				}
 
-			});		
+			});
+			g.setEdge(data.to,data.from,data.label)
+			console.log(g.edges());
 		};
 		
 		var deleteEdge = function(data, callback){
@@ -94,7 +114,9 @@
 					callback(result);
 				}
 
-			});		
+			});
+			g.removeEdge(data.to,data.from)
+			console.log(g.edges());
 		};
 		
 
@@ -108,8 +130,16 @@
 				deleteEdge : deleteEdge
 			};
 			var container = document.getElementById("graph");
-			var network =new vis.Network(container,data,data.options);	
-		})
+			var network =new vis.Network(container,data,data.options);
+			for (i=0;i<data.nodes.length;i++) {
+				g.setNode(data.node[i].id,data.node[i].label);
+			}
+			for (i=0;i<data.edges.length;i++) {
+				g.setNode(data.edge[i].id,data.edge[i].label);
+			}
+
+		});
+
 		
 
 	</script>
