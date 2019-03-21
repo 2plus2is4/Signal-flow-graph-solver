@@ -131,12 +131,7 @@
 			};
 			var container = document.getElementById("graph");
 			var network =new vis.Network(container,data,data.options);
-			for (i=0;i<data.nodes.length;i++) {
-				g.setNode(data.node[i].id,data.node[i].label);
-			}
-			for (i=0;i<data.edges.length;i++) {
-				g.setNode(data.edge[i].id,data.edge[i].label);
-			}
+			_.each(data.nodes,)
 
 		});
 

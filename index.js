@@ -9,7 +9,7 @@ app.use(express.static('node_modules'));
 var bodyParser = require('body-parser');
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }))
- 
+
 // parse application/json
 app.use(bodyParser.json())
 
@@ -23,7 +23,7 @@ var data ={
         }
     }
 }
-	
+
 
 app.post("/api/node",function(req,res){
 	var newNode = req.body;
@@ -78,7 +78,7 @@ app.delete("/api/node", function(req, res){
 		nodes: [],
 		edges: []
 	};
-		
+
 
 	var updateNodes =_.filter(data.nodes,function(node){
 		var keep = (node.id !== deleteNode);
@@ -108,7 +108,7 @@ app.delete("/api/edge", function(req, res){
 		nodes: [],
 		edges: []
 	};
-		
+
 
 	var updateEdges =_.filter(data.edges,function(edge){
 		var keep = (edge.id !== deleteEdge);
