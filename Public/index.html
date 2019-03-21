@@ -1,142 +1,148 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>HEllo</title>
-	<script type="text/javascript" src="vis/dist/vis.js"> </script>
-	<link href="vis/dist/vis.css" rel="stylesheet" type="text/css">
-	<script type="text/javascript" src="jquery/dist/jquery.js"> </script>
-	<script type="text/javascript" src="graphlib.min.js"></script>
-	<style type="text/css">
-		#graph{
-			width: 800px;
-			height: 600px;
-			border: 1px solid lightgray;
-			margin: 0 auto;
-		}
-	</style>
+    <title>HEllo</title>
+    <script type="text/javascript" src="vis/dist/vis.js"></script>
+    <link href="vis/dist/vis.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="jquery/dist/jquery.js"></script>
+    <script type="text/javascript" src="graphlib.min.js"></script>
+    <style type="text/css">
+        #graph {
+            width: 800px;
+            height: 600px;
+            border: 1px solid lightgray;
+            margin: 0 auto;
+        }
+    </style>
 </head>
 <body>
-	<div id="input"></div>
-	<div id="graph"></div>
-	<script type="text/javascript">
-		//imported.src = 'graphlib.m';
-		Graph = graphlib.Graph;
-		var g= new Graph();
-
-		var addNode = function(data, callback){
-				
-			var label = prompt("enter the node name: ");
-			if(!label){
-				return;
-			}
-			data.label=label;
-			$.post("api/node", data,function(result ){
-				callback(data);
-
-			});
-			//var myJSON = JSON.stringify(data);
-			g.setNode(data.id,data.id);
-			console.log(g.nodes());
-			//console.log(myJSON);
-		};
-
-		var editNode = function(data, callback){
-			var label = prompt("enter the node name: ",data.label);
-			if(!label){
-				return;
-			}
-			data.label=label;
-			$.ajax({
-				method:"put",
-				url: "/api/node",
-				data: data,
-				success: function(result){
-					callback(result);
-				}
-
-			});
-			g.setNode(data.id,data.label)
-			console.log(g.nodes());
-		};
-		
-		var deleteNode = function(data, callback){
-			$.ajax({
-				method:"delete",
-				url: "/api/node",
-				data: {node :data.nodes[0]},
-				success: function(result){
-					callback(result);
-				}
-
-			});
-
-			g.removeNode(data.id);
-			console.log(g.nodes());
-			console.log(g.removeNode(data.id));
-
-		};
-
-		var addEdge = function(data, callback){
-			var label = prompt("enter the edge name: ");
-			if(!label){
-				return;
-			}
-			data.label=label;
-			$.post("api/edge", data,function(result ){
-				callback(result);
-			});
-			g.setEdge(data.to,data.from);
-			console.log(g.edges());
-
-		};
+<div id="input"></div>
+<div id="graph"></div>
+<script type="text/javascript">
+    //imported.src = 'graphlib.m';
+    Graph = graphlib.Graph;
+    var g = new Graph();
 
 
-		var editEdge = function(data, callback){
-			$.ajax({
-				method:"put",
-				url: "/api/edge",
-				data: data,
-				success: function(result){
-					callback(result);
-				}
+    var addNode = function (data, callback) {
 
-			});
-			g.setEdge(data.to,data.from,data.label)
-			console.log(g.edges());
-		};
-		
-		var deleteEdge = function(data, callback){
-			$.ajax({
-				method:"delete",
-				url: "/api/edge",
-				data: {edge :data.edges[0]},
-				success: function(result){
-					callback(result);
-				}
+        var label = prompt("enter the node name: ");
+        if (!label) {
+            return;
+        }
+        data.label = label;
+        $.post("api/node", data, function (result) {
+            callback(data);
+        });
+        //var myJSON = JSON.stringify(data);
+        g.setNode(data.id, data.id);
+        console.log(g.nodes());
+        //console.log(myJSON);
+    };
 
-			});
-			g.removeEdge(data.to,data.from)
-			console.log(g.edges());
-		};
-		
+    var editNode = function (data, callback) {
+        var label = prompt("enter the node name: ", data.label);
+        if (!label) {
+            return;
+        }
+        data.label = label;
+        $.ajax({
+            method: "put",
+            url: "/api/node",
+            data: data,
+            success: function (result) {
+                callback(result);
+            }
+        });
+        g.setNode(data.id, data.label)
+        console.log(g.nodes());
+    };
 
-		$.get("/api",function(data){
-			data.options.manipulation = {
-				addNode : addNode,
-				editNode : editNode,
-				deleteNode : deleteNode,
-				addEdge : addEdge,
-				editEdge : editEdge,
-				deleteEdge : deleteEdge
-			};
-			var container = document.getElementById("graph");
-			var network =new vis.Network(container,data,data.options);
-			_.each(data.nodes,)
+    var deleteNode = function (data, callback) {
+        $.ajax({
+            method: "delete",
+            url: "/api/node",
+            data: {node: data.nodes[0]},
+            success: function (result) {
+                callback(result);
+            }
+        });
 
-		});
+        g.removeNode(data.id);
+        console.log(g.nodes());
+        console.log(g.removeNode(data.id));
+    };
 
-		
+    var addEdge = function (data, callback) {
+        var label = prompt("enter the edge name: ");
+        if (!label) {
+            return;
+        }
+        data.label = label;
+        $.post("api/edge", data, function (result) {
+            callback(result);
+        });
+        g.setEdge(data.to, data.from);
+        console.log(g.edges());
+    };
 
-	</script>
+
+    var editEdge = function (data, callback) {
+        $.ajax({
+            method: "put",
+            url: "/api/edge",
+            data: data,
+            success: function (result) {
+                callback(result);
+            }
+        });
+        g.setEdge(data.to, data.from, data.label)
+        console.log(g.edges());
+    };
+
+    var deleteEdge = function (data, callback) {
+        $.ajax({
+            method: "delete",
+            url: "/api/edge",
+            data: {edge: data.edges[0]},
+            success: function (result) {
+                callback(result);
+            }
+        });
+        g.removeEdge(data.to, data.from)
+        console.log(g.edges());
+    };
+
+    $.get("/api", function (data) {
+        data.options.manipulation = {
+            addNode: addNode,
+            editNode: editNode,
+            deleteNode: deleteNode,
+            addEdge: addEdge,
+            editEdge: editEdge,
+            deleteEdge: deleteEdge
+        };
+        var container = document.getElementById("graph");
+        var network = new vis.Network(container, data, data.options);
+        _.each(data.nodes,)
+    });
+
+    function forwardPaths(id) {
+        if(stack.includes(id)){
+            return;
+        }
+        stack.push(id);
+        if (g.successors(id).length === 0) {
+            var path = stack.slice(0);
+            paths.push(path);
+        }else {
+            for (var i = 0; i < g.successors(id).length; i++) {
+                forwardPaths(g.successors(id)[i]);
+            }
+        }
+        stack.pop();
+    }
+
+</script>
 </body>
 </html>
