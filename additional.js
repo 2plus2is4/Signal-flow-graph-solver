@@ -13,14 +13,14 @@ g.setNode("x4", "x4");
 g.setNode("x5", "x5");
 g.setNode("x6", "x6");
 //set edges
-g.setEdge("x1", "x2","G1");
-g.setEdge("x2", "x3","G2");
-g.setEdge("x3", "x4","G3");
-g.setEdge("x2", "x4","G4");
-g.setEdge("x1", "x6","G5");
-g.setEdge("x6", "x1","-H2");
-g.setEdge("x6", "x5","G6");
-g.setEdge("x5", "x1","-H1");
+g.setEdge("x1", "x2", "G1");
+g.setEdge("x2", "x3", "G2");
+g.setEdge("x3", "x4", "G3");
+g.setEdge("x2", "x4", "G4");
+g.setEdge("x1", "x6", "G5");
+g.setEdge("x6", "x1", "-H2");
+g.setEdge("x6", "x5", "G6");
+g.setEdge("x5", "x1", "-H1");
 //stack
 console.log(g.nodes());
 console.log(g.edges());
@@ -78,33 +78,50 @@ function removeTouched(loops, paths) {
     return newLoops;
 }
 
+//======================================================================
 function getDeltas() {
     if (loopsNumber === 1) {
         return;
     }
     for (let i = 2; i <= loopsNumber; i++) {
-        if(i===2){
+        if (i === 2) {
             var l = new Array();
-            for (let j = 1; j <= loopsNumber-1; j++) {
-                for (let k = j+1; k <= loopsNumber; k++) {
-                    if(!intersect(loops[j-1],loops[k-1])){
+            for (let j = 1; j <= loopsNumber - 1; j++) {
+                for (let k = j + 1; k <= loopsNumber; k++) {
+                    if (!intersect(loops[j - 1], loops[k - 1])) {
                         var x = [];
-                        x.push(loops[j-1]);
-                        x.push(loops[k-1]);
+                        x.push(loops[j - 1]);
+                        x.push(loops[k - 1]);
                         l.push(x);
                     }
                 }
             }
             nonTouchingLoops.push(l);
-        }else if (i===3){
-
+        } else if (i === 3) {
+            var l = [];
+            for (let j = 1; j <= loopsNumber - 2; j++) {
+                for (let k = j + 1; k <= loopsNumber-1; k++) {
+                    for (let m = k + 1; m <= loopsNumber; m++) {
+                        if (!intersect(loops[j - 1], loops[k - 1])) {
+                            if (!intersect(loops[j - 1], loops[m - 1])) {
+                                if (!intersect(loops[k - 1], loops[m - 1])) {
+                                    var x = [];
+                                    x.push(loops[j - 1]);
+                                    x.push(loops[k - 1]);
+                                    l.push(x);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 }
 
-function intersect(arr1,arr2) {
+function intersect(arr1, arr2) {
     for (let arr1Element of arr1) {
-        if(arr2.includes(arr1Element)){
+        if (arr2.includes(arr1Element)) {
             return true;
         }
     }
@@ -124,17 +141,17 @@ function getLoopGain(loop) {
     return gain;
 }
 
-function getOtherLoops(){
+function getOtherLoops() {
     var nodes = g.nodes();
     for (let node of nodes) {
-        if(g.edge(node,node)){
-            loops.push([node,node]);
+        if (g.edge(node, node)) {
+            loops.push([node, node]);
         }
     }
-    for (let i = 0; i < nodes.length-1; i++) {
-        for (let j = i+1; j < nodes.length; j++) {
-            if(g.edge(nodes[i],nodes[j]) && g.edge(nodes[j],nodes[i])){
-                loops.push([nodes[i],nodes[j]]);
+    for (let i = 0; i < nodes.length - 1; i++) {
+        for (let j = i + 1; j < nodes.length; j++) {
+            if (g.edge(nodes[i], nodes[j]) && g.edge(nodes[j], nodes[i])) {
+                loops.push([nodes[i], nodes[j]]);
             }
         }
     }
