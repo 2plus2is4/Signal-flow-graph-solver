@@ -17,10 +17,14 @@ g.setEdge("x1", "x2", "G1");
 g.setEdge("x2", "x3", "G2");
 g.setEdge("x3", "x4", "G3");
 g.setEdge("x2", "x4", "G4");
-g.setEdge("x1", "x6", "G5");
-g.setEdge("x6", "x1", "-H2");
-g.setEdge("x6", "x5", "G6");
-g.setEdge("x5", "x1", "-H1");
+g.setEdge("x3", "x6", "G5");
+g.setEdge("x1", "x6", "G6");
+g.setEdge("x6", "x5", "G7");
+g.setEdge("x5", "x4", "G8");
+g.setEdge("x2", "x2", "-H1");
+g.setEdge("x5", "x3", "-H3");
+g.setEdge("x5", "x1", "-H2");
+
 //stack
 console.log(g.nodes());
 console.log(g.edges());
@@ -29,30 +33,51 @@ console.log(graphlib.json.write(g));
 var stack = new Array();
 //all forward paths
 var paths = new Array();
-
+var loops = [];
+var nonTouchingLoops = new Array(loops.length);
 /**
- * find them
+ * find them paths and loops
  * @param id the targeted node
  */
 function forwardPaths(id) {
+    //visited certain node twice
     if (stack.includes(id)) {
+        var loop = [];
+        loop.push(id);
+        //back track till u reach the same node (get the loop)
+        for (let i = stack.length-1; i >=0 ; i--) {
+            loop.push(stack[i]);
+            if(stack[i]===id){
+                break;
+            }
+        }
+        //check if the loop already exists in loops array
+        for (let i = 0; i < loops.length; i++) {
+            if(loopDoubleganger(loops[i],loop)){
+                return;
+            }
+        }
+        //add the loop
+        loops.push(loop);
+        //no recursion
         return;
     }
+    //visit the node
     stack.push(id);
+    //did i reach the sink?
     if (g.successors(id).length == 0) {
         var path = stack.slice(0);
         paths.push(path);
     } else {
+        //if not, recursion
         for (var i = 0; i < g.successors(id).length; i++) {
             forwardPaths(g.successors(id)[i]);
         }
     }
+    //im done with this node
     stack.pop();
 }
 
-var loops = graphlib.alg.findCycles(g);
-var loopsNumber = loops.length;
-var nonTouchingLoops = new Array(loops.length);
 
 function removeTouched(loops, paths) {
     var newLoops = new Array();
@@ -96,7 +121,8 @@ function getDeltas() {
                     }
                 }
             }
-            nonTouchingLoops.push(l);
+            if(l.length>0)
+                nonTouchingLoops.push(l);
         } else if (i === 3) {
             var l = [];
             for (let j = 1; j <= loopsNumber - 2; j++) {
@@ -115,6 +141,8 @@ function getDeltas() {
                     }
                 }
             }
+            if(l.length>0)
+                nonTouchingLoops.push(l);
         }
     }
 }
@@ -141,22 +169,17 @@ function getLoopGain(loop) {
     return gain;
 }
 
-function getOtherLoops() {
-    var nodes = g.nodes();
-    for (let node of nodes) {
-        if (g.edge(node, node)) {
-            loops.push([node, node]);
-        }
-    }
-    for (let i = 0; i < nodes.length - 1; i++) {
-        for (let j = i + 1; j < nodes.length; j++) {
-            if (g.edge(nodes[i], nodes[j]) && g.edge(nodes[j], nodes[i])) {
-                loops.push([nodes[i], nodes[j]]);
+function loopDoubleganger(arr1,arr2) {
+    if(arr1.length===arr2.length){
+        for(let i=0;i<arr1.length;i++){
+            if(!arr2.includes(arr1[i])){
+                return false;
             }
         }
+        return true;
     }
-    loopsNumber = loops.length;
+    return false;
 }
-getOtherLoops();
+//getOtherLoops();
 forwardPaths("x1");
 getDeltas();
