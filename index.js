@@ -8,10 +8,10 @@ app.use(express.static('Public'));
 app.use(express.static('node_modules'));
 var bodyParser = require('body-parser');
 // parse application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.urlencoded({ extended: false }));
 
 // parse application/json
-app.use(bodyParser.json())
+app.use(bodyParser.json());
 
 
 var data ={
@@ -22,7 +22,7 @@ var data ={
       arrows:'to'
         }
     }
-}
+};
 
 
 app.post("/api/node",function(req,res){

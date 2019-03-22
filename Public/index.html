@@ -57,7 +57,7 @@
                 callback(result);
             }
         });
-        g.setNode(data.id, data.label)
+        g.setNode(data.id, data.label);
         console.log(g.nodes());
     };
 
@@ -99,7 +99,7 @@
                 callback(result);
             }
         });
-        g.setEdge(data.to, data.from, data.label)
+        g.setEdge(data.to, data.from, data.label);
         console.log(g.edges());
     };
 
@@ -112,7 +112,7 @@
                 callback(result);
             }
         });
-        g.removeEdge(data.to, data.from)
+        g.removeEdge(data.to, data.from);
         console.log(g.edges());
     };
 

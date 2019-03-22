@@ -1,1 +1,2 @@
-"# Signal-flow-graph-solver" 
+# Signal-flow-graph-solver
+Solving Single Flow Graph
