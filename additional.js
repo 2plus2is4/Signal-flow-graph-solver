@@ -35,6 +35,7 @@ var stack = new Array();
 var paths = new Array();
 var loops = [];
 var nonTouchingLoops = new Array(loops.length);
+
 /**
  * find them paths and loops
  * @param id the targeted node
@@ -45,15 +46,15 @@ function forwardPaths(id) {
         var loop = [];
         loop.push(id);
         //back track till u reach the same node (get the loop)
-        for (let i = stack.length-1; i >=0 ; i--) {
+        for (let i = stack.length - 1; i >= 0; i--) {
             loop.push(stack[i]);
-            if(stack[i]===id){
+            if (stack[i] === id) {
                 break;
             }
         }
         //check if the loop already exists in loops array
         for (let i = 0; i < loops.length; i++) {
-            if(loopDoubleganger(loops[i],loop)){
+            if (loopDoubleganger(loops[i], loop)) {
                 return;
             }
         }
@@ -104,15 +105,15 @@ function removeTouched(loops, paths) {
 }
 
 //======================================================================
-function getDeltas() {
-    if (loopsNumber === 1) {
+function getNonTouching() {
+    if (loops.length === 1) {
         return;
     }
-    for (let i = 2; i <= loopsNumber; i++) {
+    for (let i = 2; i <= loops.length; i++) {
         if (i === 2) {
             var l = new Array();
-            for (let j = 1; j <= loopsNumber - 1; j++) {
-                for (let k = j + 1; k <= loopsNumber; k++) {
+            for (let j = 1; j <= loops.length - 1; j++) {
+                for (let k = j + 1; k <= loops.length; k++) {
                     if (!intersect(loops[j - 1], loops[k - 1])) {
                         var x = [];
                         x.push(loops[j - 1]);
@@ -121,13 +122,13 @@ function getDeltas() {
                     }
                 }
             }
-            if(l.length>0)
+            if (l.length > 0)
                 nonTouchingLoops.push(l);
         } else if (i === 3) {
             var l = [];
-            for (let j = 1; j <= loopsNumber - 2; j++) {
-                for (let k = j + 1; k <= loopsNumber-1; k++) {
-                    for (let m = k + 1; m <= loopsNumber; m++) {
+            for (let j = 1; j <= loops.length - 2; j++) {
+                for (let k = j + 1; k <= loops.length - 1; k++) {
+                    for (let m = k + 1; m <= loops.length; m++) {
                         if (!intersect(loops[j - 1], loops[k - 1])) {
                             if (!intersect(loops[j - 1], loops[m - 1])) {
                                 if (!intersect(loops[k - 1], loops[m - 1])) {
@@ -141,7 +142,7 @@ function getDeltas() {
                     }
                 }
             }
-            if(l.length>0)
+            if (l.length > 0)
                 nonTouchingLoops.push(l);
         }
     }
@@ -169,10 +170,10 @@ function getLoopGain(loop) {
     return gain;
 }
 
-function loopDoubleganger(arr1,arr2) {
-    if(arr1.length===arr2.length){
-        for(let i=0;i<arr1.length;i++){
-            if(!arr2.includes(arr1[i])){
+function loopDoubleganger(arr1, arr2) {
+    if (arr1.length === arr2.length) {
+        for (let i = 0; i < arr1.length; i++) {
+            if (!arr2.includes(arr1[i])) {
                 return false;
             }
         }
@@ -180,6 +181,26 @@ function loopDoubleganger(arr1,arr2) {
     }
     return false;
 }
+
+function getDelta() {
+    var ans = "1 ";
+    for (let i = 0; i < loops.length; i++) {
+        ans += "-";
+        ans += getLoopGain(loops[i]);
+    }
+    for (let i = 0; i < nonTouchingLoops.length; i++) {
+        var c = "+";
+        if ((i + 1) % 2 === 0)
+            c = "-";
+        for (let j = 0; j < nonTouchingLoops[i].length; j++) {
+            ans+=c;
+            ans+=getLoopGain(nonTouchingLoops[i][j]);
+        }
+    }
+
+
+}
+
 //getOtherLoops();
 forwardPaths("x1");
-getDeltas();
+getNonTouching();
