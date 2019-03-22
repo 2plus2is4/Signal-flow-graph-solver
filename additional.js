@@ -197,8 +197,7 @@ function getDelta() {
             ans+=getLoopGain(nonTouchingLoops[i][j]);
         }
     }
-
-
+    return ans;
 }
 
 //getOtherLoops();
