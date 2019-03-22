@@ -6,6 +6,8 @@
     <link href="vis/dist/vis.css" rel="stylesheet" type="text/css">
     <script type="text/javascript" src="jquery/dist/jquery.js"></script>
     <script type="text/javascript" src="graphlib.min.js"></script>
+    <script type="text/javascript" src="underscore-min.js"></script>
+
     <style type="text/css">
         #graph {
             width: 800px;
@@ -20,6 +22,7 @@
 <div id="graph"></div>
 <script type="text/javascript">
     //imported.src = 'graphlib.m';
+
     Graph = graphlib.Graph;
     var g = new Graph();
 
@@ -124,24 +127,14 @@
         };
         var container = document.getElementById("graph");
         var network = new vis.Network(container, data, data.options);
-        _.each(data.nodes,)
+        _.each(data.nodes,function (node) {
+            g.setNode(node.id,node.label);
+        });
+        _.each(data.edges,function (edge) {
+            g.setEdge(edge.to,edge.from);
+        });
     });
 
-    function pathFinder(id) {
-        if(stack.includes(id)){
-            return;
-        }
-        stack.push(id);
-        if (g.successors(id).length === 0) {
-            var path = stack.slice(0);
-            paths.push(path);
-        }else {
-            for (var i = 0; i < g.successors(id).length; i++) {
-                forwardPaths(g.successors(id)[i]);
-            }
-        }
-        stack.pop();
-    }
 
 </script>
 </body>

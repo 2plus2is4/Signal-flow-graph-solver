@@ -47,4 +47,29 @@ function forwardPaths(id) {
     }
     stack.pop();
 }
+
+function removeUntouched(loops,paths ){
+    var newLoops = new Array();
+    for(let i=0; i<paths.length;i++){
+        var flag = true;
+        for(let ii=0; ii<loops.length;ii++){
+            for(let iii=0; iii=loops[ii].length;iii++){
+                if(paths[i].includes(loops[ii][iii])){
+                    flag=false;
+                }
+            }
+            if(flag){
+                newLoops.push(loops[ii])
+            }
+        }
+
+    }
+    return newLoops;
+}
+
+function getDeltas(){
+    //return getdelta(removeUntouched(loops,paths),paths)
+
+}
+
 forwardPaths("x1");
