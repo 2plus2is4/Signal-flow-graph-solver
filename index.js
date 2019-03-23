@@ -16,13 +16,30 @@ app.use(bodyParser.json());
 
 
 var data ={
-	nodes: [],
-	edges: [],
-	options: {
-		edges: {
-      arrows:'to'
-        }
-    }
+	 nodes: [],
+	 edges: [],
+	 options: {
+		 // 	edges: {
+		 //   arrows:'to'
+		 //     }
+
+		 nodes: {
+			 shape: 'dot',
+			 size: 12,
+			 font: {
+				 size: 16,
+				 color: '#ffffff'
+			 },
+			 color:'#FB7E81',
+			 borderWidth: 2
+		 },
+		 edges: {
+			 width: 1,
+			 length:50,
+			 arrows:'to'
+
+		 }
+	 }
 };
 
 
