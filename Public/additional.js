@@ -91,9 +91,7 @@ console.log(loops);
  * @returns array of loops the same size as the paths {any[]}
  */
 function removeTouched(loops, paths) {
-    //3d array
     var  UntouchedLoops = new Array();
-    //2d array
     var  loop = new Array();
     for (let i = 0; i < paths.length; i++) {
         var flag = true;
@@ -101,12 +99,12 @@ function removeTouched(loops, paths) {
         for (let ii = 0; ii < loops.length; ii++) {
 
             for (let iii = 0; iii < loops[ii].length; iii++) {
-                //checks if it contains a loop touching a path
+                //checks if it contains a loop toching a path
                 if (paths[i].includes(loops[ii][iii])) {
                     flag = false;
                 }
             }
-            //pushing the loop
+            //pushing the nodes
             if (flag) {
                 loop.push(loops[ii])
             }
@@ -117,6 +115,7 @@ function removeTouched(loops, paths) {
     }
     return UntouchedLoops;
 }
+console.log(removeTouched(loops,paths));
 
 //======================================================================
 
@@ -197,7 +196,7 @@ function loopDoubleganger(arr1, arr2) {
     return false;
 }
 
-function getDelta(loops) {
+function getDelta() {
     var ans = "1 ";
     for (let i = 0; i < loops.length; i++) {
         ans += "-";
@@ -212,15 +211,6 @@ function getDelta(loops) {
             ans+=getLoopGain(nonTouchingLoops[i][j]);
         }
     }
-    return ans;
-}
-
-function getDeltas(){
-    var ans =[];
-    for(let i=0;i<paths.length;i++){
-        ans.push(getDelta(removeTouched(loops,paths)));
-    }
-
     return ans;
 }
 

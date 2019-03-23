@@ -7,7 +7,8 @@
     <script type="text/javascript" src="jquery/dist/jquery.js"></script>
     <script type="text/javascript" src="graphlib.min.js"></script>
     <script type="text/javascript" src="underscore-min.js"></script>
-    <script type="text/javascript" src="../additional.js"></script>
+    <script type="text/javascript" src="additional.js"></script>
+
 
 
     <style type="text/css">
@@ -28,7 +29,7 @@
     Graph = graphlib.Graph;
     var g = new Graph();
     var firstNode;
-
+    var counter =0;
     var addNode = function (data, callback) {
 
         var label = prompt("enter the node name: ");
@@ -40,10 +41,11 @@
             callback(data);
         });
         //var myJSON = JSON.stringify(data);
-        if(firstNode==nill){firstNode = data}
+        if(firstNode==null){firstNode = data}
         g.setNode(data.id, data.label);
         console.log(g.nodes());
         //console.log(myJSON);
+        counter++;
     };
 
     var editNode = function (data, callback) {
@@ -88,7 +90,7 @@
         $.post("api/edge", data, function (result) {
             callback(result);
         });
-        g.setEdge(data.to, data.from);
+        g.setEdge(data.from, data.to);
         console.log(g.edges());
     };
 
@@ -137,7 +139,12 @@
             g.setEdge(edge.to,edge.from);
         });
     });
-    console.log(forwardPaths(firstNode.id));
+
+    if(firstNode === null){
+
+    }else if(counter===6) {
+        console.log(getDelta());
+    }
 
 
 </script>
