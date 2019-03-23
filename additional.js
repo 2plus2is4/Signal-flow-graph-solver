@@ -76,35 +76,50 @@ function forwardPaths(id) {
     }
     //im done with this node
     stack.pop();
+    return paths;
 }
+console.log(forwardPaths("x1"));
+console.log(paths);
+console.log(loops);
 
-
+/**
+ *
+ *
+ * @param loops
+ * @param paths
+ * @returns array of loops the same size as the paths {any[]}
+ */
 function removeTouched(loops, paths) {
-    var newLoops = new Array();
-
+    var  UntouchedLoops = new Array();
+    var  loop = new Array();
     for (let i = 0; i < paths.length; i++) {
         var flag = true;
 
         for (let ii = 0; ii < loops.length; ii++) {
 
-            for (let iii = 0; iii = loops[ii].length; iii++) {
-
+            for (let iii = 0; iii < loops[ii].length; iii++) {
+                //checks if it contains a loop toching a path
                 if (paths[i].includes(loops[ii][iii])) {
                     flag = false;
                 }
             }
-
+            //pushing the nodes
             if (flag) {
-                newLoops.push(loops[ii])
+                loop.push(loops[ii])
             }
         }
+        UntouchedLoops.push(loop);
+        loop=[];
 
     }
-    return newLoops;
+    return UntouchedLoops;
 }
+console.log(removeTouched(loops,paths));
 
 //======================================================================
+
 function getDeltas() {
+    var loopsNumber = loops.length;
     if (loopsNumber === 1) {
         return;
     }

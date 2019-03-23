@@ -6,6 +6,7 @@ var _ = require("underscore");
 var uuid = require("uuid-v4");
 app.use(express.static('Public'));
 app.use(express.static('node_modules'));
+app.use(express.static('additional.js'));
 var bodyParser = require('body-parser');
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }));
