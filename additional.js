@@ -34,7 +34,7 @@ var stack = new Array();
 //all forward paths
 var paths = new Array();
 var loops = [];
-var nonTouchingLoops = new Array(loops.length);
+
 
 /**
  * find them paths and loops
@@ -79,6 +79,7 @@ function forwardPaths(id) {
     stack.pop();
     return paths;
 }
+
 console.log(forwardPaths("x1"));
 console.log(paths);
 console.log(loops);
@@ -92,9 +93,9 @@ console.log(loops);
  */
 function removeTouched(loops, paths) {
     //3d array
-    var  UntouchedLoops = new Array();
+    var UntouchedLoops = new Array();
     //2d array
-    var  loop = new Array();
+    var loop = new Array();
     for (let i = 0; i < paths.length; i++) {
         var flag = true;
 
@@ -112,7 +113,7 @@ function removeTouched(loops, paths) {
             }
         }
         UntouchedLoops.push(loop);
-        loop=[];
+        loop = [];
 
     }
     return UntouchedLoops;
@@ -120,45 +121,55 @@ function removeTouched(loops, paths) {
 
 //======================================================================
 
+function fillBoolean(touch) {
+    nonTouchingLoops[0] = [];
+    for (let i = 0; i < loops.length-1; i++) {
+        for (let j = i + 1; j < loops.length; j++) {
+            if (!intersect(loops[i], loops[j])) {
+                touch[i][j] = false;
+                nonTouchingLoops[0].push([i, j]);
+            }
+        }
+    }
+}
+var nonTouchingLoops = new Array(loops.length - 1);
 function getNonTouching() {
+    //if we have only 1 loop we dont need to do anytihng
     if (loops.length === 1) {
         return;
     }
-    for (let i = 2; i <= loops.length; i++) {
-        if (i === 2) {
-            var l = new Array();
-            for (let j = 1; j <= loops.length - 1; j++) {
-                for (let k = j + 1; k <= loops.length; k++) {
-                    if (!intersect(loops[j - 1], loops[k - 1])) {
-                        var x = [];
-                        x.push(loops[j - 1]);
-                        x.push(loops[k - 1]);
-                        l.push(x);
+    //boolean array of touched loops
+    var touch = [];
+    //fill it with false
+    for (let i = 0; i < loops.length; i++) {
+        var touch1 = [];
+        for (let i = 0; i < loops.length; i++) {
+            touch1.push(true);
+        }
+        touch.push(touch1);
+    }
+    //get each 2 touched loops
+    fillBoolean(touch);
+    //for more than 2
+    for (let i = 1; i < nonTouchingLoops.length; i++) {
+        nonTouchingLoops[i] = [];
+        for (let j = 0; j < nonTouchingLoops[i - 1].length; j++) {
+            for (let l = 0; l < loops.length; l++) {
+                var flag = false;
+                var temp = [];
+                for (let k = 0; k < nonTouchingLoops[i - 1][j].length; k++) {
+                    temp.push(nonTouchingLoops[i - 1][j][k]);
+                    if (!nonTouchingLoops[i - 1][j].includes(l)) {
+                        flag |= intersect(loops[nonTouchingLoops[i - 1][j][k]], loops[l]);
+                    }else {
+                        flag = true;
                     }
                 }
-            }
-            if (l.length > 0)
-                nonTouchingLoops.push(l);
-        } else if (i === 3) {
-            var l = [];
-            for (let j = 1; j <= loops.length - 2; j++) {
-                for (let k = j + 1; k <= loops.length - 1; k++) {
-                    for (let m = k + 1; m <= loops.length; m++) {
-                        if (!intersect(loops[j - 1], loops[k - 1])) {
-                            if (!intersect(loops[j - 1], loops[m - 1])) {
-                                if (!intersect(loops[k - 1], loops[m - 1])) {
-                                    var x = [];
-                                    x.push(loops[j - 1]);
-                                    x.push(loops[k - 1]);
-                                    l.push(x);
-                                }
-                            }
-                        }
-                    }
+                if (!flag) {
+                    temp.push(l);
+                    nonTouchingLoops[j].push(temp);
                 }
             }
-            if (l.length > 0)
-                nonTouchingLoops.push(l);
         }
     }
 }
@@ -175,13 +186,18 @@ function intersect(arr1, arr2) {
 function getLoopGain(loop) {
     //TODO to be adjusted
     var gain = "(";
-
-    for (let i = 0; i < loop.length - 1; i++) {
-        gain.concat(g.edge(loop[i], loop[i + 1]));
-        gain.concat("*");
+    if (loop.length == 2) {
+        gain += g.edge(loop[0], loop[1]);
+        gain += ")";
+        return gain;
     }
-    gain.concat(g.edge(loop[loop.length - 1], loop[0]));
-    gain.concat(")");
+    for (let i = 1; i < loop.length; i++) {
+        gain += g.edge(loop[i], loop[i - 1]);
+        if (i < loop.length - 1)
+            gain += "*";
+    }
+    // gain+=g.edge(loop[loop.length - 1], loop[0]);
+    gain += ")";
     return gain;
 }
 
@@ -208,17 +224,17 @@ function getDelta(loops) {
         if ((i + 1) % 2 === 0)
             c = "-";
         for (let j = 0; j < nonTouchingLoops[i].length; j++) {
-            ans+=c;
-            ans+=getLoopGain(nonTouchingLoops[i][j]);
+            ans += c;
+            ans += getLoopGain(nonTouchingLoops[i][j]);
         }
     }
     return ans;
 }
 
-function getDeltas(){
-    var ans =[];
-    for(let i=0;i<paths.length;i++){
-        ans.push(getDelta(removeTouched(loops,paths)));
+function getDeltas() {
+    var ans = [];
+    for (let i = 0; i < paths.length; i++) {
+        ans.push(getDelta(removeTouched(loops, paths)));
     }
 
     return ans;
@@ -226,4 +242,8 @@ function getDeltas(){
 
 //getOtherLoops();
 forwardPaths("x1");
+// getNonTouching();
+for (let i = 0; i < loops.length; i++) {
+    getLoopGain(loops[i]);
+}
 getNonTouching();
