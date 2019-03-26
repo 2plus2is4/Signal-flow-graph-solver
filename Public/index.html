@@ -14,15 +14,14 @@
     <!--<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <!--<style type="text/css">-->
-        <!--#graph {-->
-            <!--width: 800px;-->
-            <!--height: 600px;-->
-            <!--border: 1px solid lightgray;-->
-            <!--margin: 0 auto;-->
-        <!--}-->
+    <!--#graph {-->
+    <!--width: 800px;-->
+    <!--height: 600px;-->
+    <!--border: 1px solid lightgray;-->
+    <!--margin: 0 auto;-->
+    <!--}-->
     <!--</style>-->
     <style>
-
         #graph {
             width: 1530px;
             height: 700px;
@@ -39,19 +38,17 @@
 <script type="text/javascript">
     //imported.src = 'graphlib.m';
     //var bs = require('bootstrap');
-
     Graph = graphlib.Graph;
-    var g = new Graph();
+    var g = new Graph({ directed: true });
+    console.log(g);
     var firstNode;
     var counter =0;
     var addNode = function (data, callback) {
-
         if(counter === 0) {
             var count = Number(prompt("please specify how many nodes are you planning to put: "));
         }
         console.log(count);
-
-            var label = prompt("enter the node name: ");
+        var label = prompt("enter the node name: ");
         if (!label) {
             return;
         }
@@ -59,19 +56,21 @@
         $.post("api/node", data, function (result) {
             callback(data);
         });
-        //var myJSON = JSON.stringify(data);
         if(firstNode==null){
             firstNode = data;
             data.fixed=true;
+            console.log(firstNode);
         }else if(counter === count){
             data.fixed=true;
         }
         g.setNode(data.id, data.label);
         console.log(g.nodes());
+        console.log(g);
+
+        console.log(g.successors(firstNode.id));
         //console.log(myJSON);
         counter++;
     };
-
     var editNode = function (data, callback) {
         var label = prompt("enter the node name: ", data.label);
         if (!label) {
@@ -89,7 +88,6 @@
         g.setNode(data.id, data.label);
         console.log(g.nodes());
     };
-
     var deleteNode = function (data, callback) {
         $.ajax({
             method: "delete",
@@ -99,12 +97,10 @@
                 callback(result);
             }
         });
-
         g.removeNode(data.id);
         console.log(g.nodes());
         console.log(g.removeNode(data.id));
     };
-
     var addEdge = function (data, callback) {
         var label = prompt("enter the edge name: ");
         if (!label) {
@@ -114,11 +110,9 @@
         $.post("api/edge", data, function (result) {
             callback(result);
         });
-        g.setEdge(data.from, data.to);
+        g.setEdge(data.from, data.to,data.label);
         console.log(g.edges());
     };
-
-
     var editEdge = function (data, callback) {
         $.ajax({
             method: "put",
@@ -131,7 +125,6 @@
         g.setEdge(data.to, data.from, data.label);
         console.log(g.edges());
     };
-
     var deleteEdge = function (data, callback) {
         $.ajax({
             method: "delete",
@@ -144,7 +137,6 @@
         g.removeEdge(data.to, data.from);
         console.log(g.edges());
     };
-
     $.get("/api", function (data) {
         data.options.manipulation = {
             addNode: addNode,
@@ -163,16 +155,13 @@
             g.setEdge(edge.to,edge.from);
         });
     });
-
     if(firstNode === null){
-
     }else if(counter===9) {
-        console.log(getDeltas());
 
+        console.log(forwardPaths(firstNode.id,g));
+        console.log(getDeltas());
         console.log(getDelta());
     }
-
-
 </script>
 <button type="button" class="btn btn-secondary btn-lg btn-block">Solve Flow Graph</button>
 </body>

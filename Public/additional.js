@@ -4,30 +4,30 @@ imported.src = 'node_modules/@dagrejs/graphlib/dist/graphlib.min.js';
 //someshit
 Graph = graphlib.Graph;
 //creating a graph
-var g = new Graph();
-//set nodes
-g.setNode("x1", "x1");
-g.setNode("x2", "x2");
-g.setNode("x3", "x3");
-g.setNode("x4", "x4");
-g.setNode("x5", "x5");
-g.setNode("x6", "x6");
-//set edges
-g.setEdge("x1", "x2", "G1");
-g.setEdge("x2", "x3", "G2");
-g.setEdge("x3", "x4", "G3");
-g.setEdge("x2", "x4", "G4");
-g.setEdge("x3", "x6", "G5");
-g.setEdge("x1", "x6", "G6");
-g.setEdge("x6", "x5", "G7");
-g.setEdge("x5", "x4", "G8");
-g.setEdge("x2", "x2", "-H1");
-g.setEdge("x5", "x3", "-H3");
-g.setEdge("x5", "x1", "-H2");
-
-//stack
-console.log(g.nodes());
-console.log(g.edges());
+// var g = new Graph();
+// //set nodes
+// g.setNode("x1", "x1");
+// g.setNode("x2", "x2");
+// g.setNode("x3", "x3");
+// g.setNode("x4", "x4");
+// g.setNode("x5", "x5");
+// g.setNode("x6", "x6");
+// //set edges
+// g.setEdge("x1", "x2", "G1");
+// g.setEdge("x2", "x3", "G2");
+// g.setEdge("x3", "x4", "G3");
+// g.setEdge("x2", "x4", "G4");
+// g.setEdge("x3", "x6", "G5");
+// g.setEdge("x1", "x6", "G6");
+// g.setEdge("x6", "x5", "G7");
+// g.setEdge("x5", "x4", "G8");
+// g.setEdge("x2", "x2", "-H1");
+// g.setEdge("x5", "x3", "-H3");
+// g.setEdge("x5", "x1", "-H2");
+//
+// //stack
+// console.log(g.nodes());
+// console.log(g.edges());
 //var g2 = graphlib.json.read(JSON.parse(str));
 console.log(graphlib.json.write(g));
 var stack = new Array();
@@ -40,7 +40,7 @@ var nonTouchingLoops = new Array(loops.length);
  * find them paths and loops
  * @param id the targeted node
  */
-function forwardPaths(id) {
+function forwardPaths(id,gr) {
     //visited certain node twice
     if (stack.includes(id)) {
         var loop = [];
@@ -66,20 +66,20 @@ function forwardPaths(id) {
     //visit the node
     stack.push(id);
     //did i reach the sink?
-    if (g.successors(id).length == 0) {
+    if (gr.successors(id).length == 0) {
         var path = stack.slice(0);
         paths.push(path);
     } else {
         //if not, recursion
-        for (var i = 0; i < g.successors(id).length; i++) {
-            forwardPaths(g.successors(id)[i]);
+        for (var i = 0; i < gr.successors(id).length; i++) {
+            forwardPaths(gr.successors(id)[i]);
         }
     }
     //im done with this node
     stack.pop();
     return paths;
 }
-console.log(forwardPaths("x1"));
+//console.log(forwardPaths("x1"));
 console.log(paths);
 console.log(loops);
 
@@ -91,30 +91,33 @@ console.log(loops);
  * @returns array of loops the same size as the paths {any[]}
  */
 function removeTouched(loops, paths) {
-    var  UntouchedLoops = new Array();
-    var  loop = new Array();
+    //3d array
+    var UntouchedLoops = new Array();
+    //2d array
+    var loop = new Array();
     for (let i = 0; i < paths.length; i++) {
         var flag = true;
 
         for (let ii = 0; ii < loops.length; ii++) {
 
             for (let iii = 0; iii < loops[ii].length; iii++) {
-                //checks if it contains a loop toching a path
+                //checks if it contains a loop touching a path
                 if (paths[i].includes(loops[ii][iii])) {
                     flag = false;
                 }
             }
-            //pushing the nodes
+            //pushing the loop
             if (flag) {
                 loop.push(loops[ii])
             }
         }
         UntouchedLoops.push(loop);
-        loop=[];
+        loop = [];
 
     }
     return UntouchedLoops;
 }
+
 console.log(removeTouched(loops,paths));
 
 //======================================================================
@@ -214,6 +217,14 @@ function getDelta() {
     return ans;
 }
 
+function getDeltas() {
+    var ans = [];
+    for (let i = 0; i < paths.length; i++) {
+        ans.push(getDelta(removeTouched(loops, paths)));
+    }
+
+    return ans;
+}
+
 //getOtherLoops();
-forwardPaths("x1");
 getNonTouching();
