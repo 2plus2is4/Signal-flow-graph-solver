@@ -145,9 +145,8 @@ function fillBoolean(touch) {
         }
     }
 }
-
+var nonTouchingLoops = [];
 function getNonTouching() {
-    var nonTouchingLoops = [];
     //if we have only 1 loop we dont need to do anytihng
     if (loops.length === 1) {
         return;
@@ -165,7 +164,7 @@ function getNonTouching() {
     //get each 2 touched loops
     fillBoolean(touch);
     //for more than 2
-    for (let i = 1; i < nonTouchingLoops.length; i++) {
+    for (let i = 1; i < loops.length; i++) {
         nonTouchingLoops[i] = [];
         for (let j = 0; j < nonTouchingLoops[i - 1].length; j++) {
             for (let l = 0; l < loops.length; l++) {
