@@ -44,12 +44,16 @@ var loops = [];
  * find them paths and loops
  * @param id the targeted node
  */
-function forwardPaths(id) {
-    //visited certain node twice
+
+function b4forwardpaths() {
     console.log(stack=[]);
     console.log(g);
     console.log(paths=[]);
     console.log(loops=[]);
+}
+
+function forwardPaths(id) {
+    //visited certain node twice
     if (stack.includes(id)) {
         var loop = [];
         loop.push(id);
