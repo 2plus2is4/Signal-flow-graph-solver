@@ -44,6 +44,15 @@ var loops = [];
  * find them paths and loops
  * @param id the targeted node
  */
+
+
+function b4forwardpaths() {
+    console.log(stack=[]);
+    console.log(g);
+    console.log(paths=[]);
+    console.log(loops=[]);
+}
+
 function forwardPaths(id) {
     //visited certain node twice
     console.log(stack=[]);
@@ -250,10 +259,3 @@ function getDeltas() {
     return ans;
 }
 
-//getOtherLoops();
-// forwardPaths("x1");
-// getNonTouching();
-// for (let i = 0; i < loops.length; i++) {
-//     getLoopGain(loops[i]);
-// }
-// getNonTouching();
