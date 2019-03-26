@@ -4,8 +4,6 @@
     <list default="true" id="5f9a8545-2de8-413f-a089-fc716c062ce7" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Public/additional.js" beforeDir="false" afterPath="$PROJECT_DIR$/Public/additional.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/Public/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/additional.js" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -46,8 +44,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Public/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="438">
-              <caret line="162" column="32" lean-forward="true" selection-start-line="162" selection-end-line="163" />
+            <state relative-caret-position="372">
+              <caret line="160" column="8" lean-forward="true" selection-start-line="160" selection-start-column="8" selection-end-line="160" selection-end-column="50" />
               <folding>
                 <element signature="n#head#0;n#html#0;n#!!top" />
               </folding>
@@ -58,8 +56,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Public/additional.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="297">
-              <caret line="18" column="31" lean-forward="true" selection-start-line="18" selection-start-column="31" selection-end-line="18" selection-end-column="31" />
+            <state relative-caret-position="614">
+              <caret line="258" column="20" selection-start-line="258" selection-start-column="20" selection-end-line="258" selection-end-column="20" />
             </state>
           </provider>
         </entry>
@@ -176,6 +174,7 @@
       <workItem from="1553543145134" duration="3682000" />
       <workItem from="1553583462801" duration="640000" />
       <workItem from="1553588091237" duration="6136000" />
+      <workItem from="1553609289718" duration="3884000" />
     </task>
     <task id="LOCAL-00001" summary="forward paths on acyclic graph">
       <created>1553006033271</created>
@@ -195,7 +194,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="62366000" />
+    <option name="totallyTimeSpent" value="66250000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
@@ -312,19 +311,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/additional.js">
+    <entry file="file://$PROJECT_DIR$/additional.js" />
+    <entry file="file://$PROJECT_DIR$/node_modules/@dagrejs/graphlib/lib/graph.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="88">
-          <caret line="42" column="6" lean-forward="true" selection-start-line="42" selection-start-column="6" selection-end-line="42" selection-end-column="6" />
-          <folding>
-            <element signature="e#2305#2981#0" />
-            <element signature="e#3085#3385#0" />
-            <element signature="e#3464#4770#0" />
-            <element signature="e#4803#4943#0" />
-            <element signature="e#4972#5380#0" />
-            <element signature="e#5420#5652#0" />
-            <element signature="e#6383#6413#0" />
-          </folding>
+        <state relative-caret-position="5676">
+          <caret line="258" column="38" lean-forward="true" selection-start-line="258" selection-start-column="38" selection-end-line="258" selection-end-column="38" />
         </state>
       </provider>
     </entry>
@@ -349,17 +340,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/node_modules/@dagrejs/graphlib/lib/graph.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5676">
-          <caret line="258" column="38" lean-forward="true" selection-start-line="258" selection-start-column="38" selection-end-line="258" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Public/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="438">
-          <caret line="162" column="32" lean-forward="true" selection-start-line="162" selection-end-line="163" />
+        <state relative-caret-position="372">
+          <caret line="160" column="8" lean-forward="true" selection-start-line="160" selection-start-column="8" selection-end-line="160" selection-end-column="50" />
           <folding>
             <element signature="n#head#0;n#html#0;n#!!top" />
           </folding>
@@ -368,8 +352,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Public/additional.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="297">
-          <caret line="18" column="31" lean-forward="true" selection-start-line="18" selection-start-column="31" selection-end-line="18" selection-end-column="31" />
+        <state relative-caret-position="614">
+          <caret line="258" column="20" selection-start-line="258" selection-start-column="20" selection-end-line="258" selection-end-column="20" />
         </state>
       </provider>
     </entry>
