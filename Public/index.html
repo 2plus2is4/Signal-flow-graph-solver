@@ -64,11 +64,10 @@
             data.fixed=true;
         }
         g.setNode(data.id, data.label);
-        console.log(g.nodes());
-        console.log(g);
-
-        console.log(g.successors(firstNode.id));
-        //console.log(myJSON);
+        // console.log(g.nodes());
+        // console.log(g);
+        // console.log(forwardPaths(firstNode));
+        // console.log(paths);
         counter++;
     };
     var editNode = function (data, callback) {
@@ -111,7 +110,10 @@
             callback(result);
         });
         g.setEdge(data.from, data.to,data.label);
+        console.log(firstNode);
         console.log(g.edges());
+        console.log(forwardPaths(firstNode.id));
+        console.log(paths);
     };
     var editEdge = function (data, callback) {
         $.ajax({
@@ -157,11 +159,12 @@
     });
     if(firstNode === null){
     }else if(counter===9) {
-
+        console.log(firstNode);
         console.log(forwardPaths(firstNode.id,g));
         console.log(getDeltas());
         console.log(getDelta());
     }
+
 </script>
 <button type="button" class="btn btn-secondary btn-lg btn-block">Solve Flow Graph</button>
 </body>

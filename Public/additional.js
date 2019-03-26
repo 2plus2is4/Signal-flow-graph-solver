@@ -1,10 +1,9 @@
 var imported = document.createElement('script');
-imported.src = 'node_modules/@dagrejs/graphlib/dist/graphlib.min.js';
+imported.src = 'Public/graphlib.min.js';
 //document.head.appendChild(imported);
 //someshit
 Graph = graphlib.Graph;
 //creating a graph
-// var g = new Graph();
 // //set nodes
 // g.setNode("x1", "x1");
 // g.setNode("x2", "x2");
@@ -29,19 +28,28 @@ Graph = graphlib.Graph;
 // console.log(g.nodes());
 // console.log(g.edges());
 //var g2 = graphlib.json.read(JSON.parse(str));
-console.log(graphlib.json.write(g));
-var stack = new Array();
-//all forward paths
-var paths = new Array();
-var loops = [];
-var nonTouchingLoops = new Array(loops.length);
+// console.log(graphlib.json.write(g));
 
+
+
+
+function setG(graph) {
+    g = graph;
+}
+var stack = [];
+//all forward paths
+var paths = [];
+var loops = [];
 /**
  * find them paths and loops
  * @param id the targeted node
  */
-function forwardPaths(id,gr) {
+function forwardPaths(id) {
     //visited certain node twice
+    console.log(stack=[]);
+    console.log(g);
+    console.log(paths=[]);
+    console.log(loops=[]);
     if (stack.includes(id)) {
         var loop = [];
         loop.push(id);
@@ -66,22 +74,24 @@ function forwardPaths(id,gr) {
     //visit the node
     stack.push(id);
     //did i reach the sink?
-    if (gr.successors(id).length == 0) {
+    console.log(g.node(id));
+    if (g.successors(id).length === 0) {
         var path = stack.slice(0);
         paths.push(path);
     } else {
         //if not, recursion
-        for (var i = 0; i < gr.successors(id).length; i++) {
-            forwardPaths(gr.successors(id)[i]);
+        for (var i = 0; i < g.successors(id).length; i++) {
+            forwardPaths(g.successors(id)[i]);
         }
     }
     //im done with this node
     stack.pop();
     return paths;
 }
-//console.log(forwardPaths("x1"));
-console.log(paths);
-console.log(loops);
+
+// console.log(forwardPaths("x1"));
+// console.log(paths);
+// console.log(loops);
 
 /**
  *
@@ -118,49 +128,58 @@ function removeTouched(loops, paths) {
     return UntouchedLoops;
 }
 
-console.log(removeTouched(loops,paths));
-
 //======================================================================
 
+function fillBoolean(touch) {
+    nonTouchingLoops[0] = [];
+    for (let i = 0; i < loops.length-1; i++) {
+        for (let j = i + 1; j < loops.length; j++) {
+            if (!intersect(loops[i], loops[j])) {
+                touch[i][j] = false;
+                nonTouchingLoops[0].push([i, j]);
+            }
+        }
+    }
+}
+
 function getNonTouching() {
+    var nonTouchingLoops = [];
+    //if we have only 1 loop we dont need to do anytihng
     if (loops.length === 1) {
         return;
     }
-    for (let i = 2; i <= loops.length; i++) {
-        if (i === 2) {
-            var l = new Array();
-            for (let j = 1; j <= loops.length - 1; j++) {
-                for (let k = j + 1; k <= loops.length; k++) {
-                    if (!intersect(loops[j - 1], loops[k - 1])) {
-                        var x = [];
-                        x.push(loops[j - 1]);
-                        x.push(loops[k - 1]);
-                        l.push(x);
+    //boolean array of touched loops
+    var touch = [];
+    //fill it with false
+    for (let i = 0; i < loops.length; i++) {
+        var touch1 = [];
+        for (let i = 0; i < loops.length; i++) {
+            touch1.push(true);
+        }
+        touch.push(touch1);
+    }
+    //get each 2 touched loops
+    fillBoolean(touch);
+    //for more than 2
+    for (let i = 1; i < nonTouchingLoops.length; i++) {
+        nonTouchingLoops[i] = [];
+        for (let j = 0; j < nonTouchingLoops[i - 1].length; j++) {
+            for (let l = 0; l < loops.length; l++) {
+                var flag = false;
+                var temp = [];
+                for (let k = 0; k < nonTouchingLoops[i - 1][j].length; k++) {
+                    temp.push(nonTouchingLoops[i - 1][j][k]);
+                    if (!nonTouchingLoops[i - 1][j].includes(l)) {
+                        flag |= touch[nonTouchingLoops[i - 1][j][k]][l];
+                    }else {
+                        flag = true;
                     }
                 }
-            }
-            if (l.length > 0)
-                nonTouchingLoops.push(l);
-        } else if (i === 3) {
-            var l = [];
-            for (let j = 1; j <= loops.length - 2; j++) {
-                for (let k = j + 1; k <= loops.length - 1; k++) {
-                    for (let m = k + 1; m <= loops.length; m++) {
-                        if (!intersect(loops[j - 1], loops[k - 1])) {
-                            if (!intersect(loops[j - 1], loops[m - 1])) {
-                                if (!intersect(loops[k - 1], loops[m - 1])) {
-                                    var x = [];
-                                    x.push(loops[j - 1]);
-                                    x.push(loops[k - 1]);
-                                    l.push(x);
-                                }
-                            }
-                        }
-                    }
+                if (!flag) {
+                    temp.push(l);
+                    nonTouchingLoops[j].push(temp);
                 }
             }
-            if (l.length > 0)
-                nonTouchingLoops.push(l);
         }
     }
 }
@@ -177,13 +196,18 @@ function intersect(arr1, arr2) {
 function getLoopGain(loop) {
     //TODO to be adjusted
     var gain = "(";
-
-    for (let i = 0; i < loop.length - 1; i++) {
-        gain.concat(g.edge(loop[i], loop[i + 1]));
-        gain.concat("*");
+    if (loop.length == 2) {
+        gain += g.edge(loop[0], loop[1]);
+        gain += ")";
+        return gain;
     }
-    gain.concat(g.edge(loop[loop.length - 1], loop[0]));
-    gain.concat(")");
+    for (let i = 1; i < loop.length; i++) {
+        gain += g.edge(loop[i], loop[i - 1]);
+        if (i < loop.length - 1)
+            gain += "*";
+    }
+    // gain+=g.edge(loop[loop.length - 1], loop[0]);
+    gain += ")";
     return gain;
 }
 
@@ -199,7 +223,7 @@ function loopDoubleganger(arr1, arr2) {
     return false;
 }
 
-function getDelta() {
+function getDelta(loops) {
     var ans = "1 ";
     for (let i = 0; i < loops.length; i++) {
         ans += "-";
@@ -210,8 +234,8 @@ function getDelta() {
         if ((i + 1) % 2 === 0)
             c = "-";
         for (let j = 0; j < nonTouchingLoops[i].length; j++) {
-            ans+=c;
-            ans+=getLoopGain(nonTouchingLoops[i][j]);
+            ans += c;
+            ans += getLoopGain(nonTouchingLoops[i][j]);
         }
     }
     return ans;
@@ -227,4 +251,9 @@ function getDeltas() {
 }
 
 //getOtherLoops();
-getNonTouching();
+// forwardPaths("x1");
+// getNonTouching();
+// for (let i = 0; i < loops.length; i++) {
+//     getLoopGain(loops[i]);
+// }
+// getNonTouching();
