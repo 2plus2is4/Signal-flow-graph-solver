@@ -115,15 +115,17 @@ function removeTouched(loops, paths) {
         for (let ii = 0; ii < loops.length; ii++) {
 
             for (let iii = 0; iii < loops[ii].length; iii++) {
-                //checks if it contains a loop touching a path
+                //checks if it contains  a loop touching a path
                 if (paths[i].includes(loops[ii][iii])) {
                     flag = false;
                 }
             }
             //pushing the loop
             if (flag) {
-                loop.push(loops[ii])
+                loop.push(loops[ii]);
+                console.log(loop);
             }
+            flag = true;
         }
         UntouchedLoops.push(loop);
         loop = [];
