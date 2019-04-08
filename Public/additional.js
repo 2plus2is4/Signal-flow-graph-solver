@@ -226,17 +226,19 @@ function getDelta() {
     ans += "-(";
     for (let i = 0; i < loops.length; i++) {
         ans += getLoopGain(loops[i]);
-        if(i<loops.length-1)
+        if (i < loops.length - 1)
             ans += "+";
     }
     ans += ")";
     var c = "+";
     for (let i = 0; i < nonTouchingLoops.length; i++) {
-        c = ((i + 1) % 2 === 0) ? "-" : "+";
-        ans += c;
-        ans += "(";
+        if (nonTouchingLoops[i].length > 0) {
+            c = ((i + 1) % 2 === 0) ? "-" : "+";
+            ans += c;
+            ans += "(";
+        }
         for (let j = 0; j < nonTouchingLoops[i].length; j++) {
-            ans += getLoopGain(nonTouchingLoops[i][j]);
+            ans += getLoopGain(loops[nonTouchingLoops[i][j]]);
             if (j + 1 < nonTouchingLoops[i].length)
                 ans += "+";
         }
@@ -249,13 +251,15 @@ function getDeltas() {
     var ans = [];
     var ntl = removeTouched();
     var d = "1";
+    if (ntl.length > 0)
+        d += "-(";
     for (let i = 0; i < ntl.length; i++) {
         for (let j = 0; j < ntl[i]; j++) {
-            d+=getLoopGain(ntl[i]);
-            if(i+1<ntl.length+1)
-                d+="+";
+            d += getLoopGain(ntl[i]);
+            if (i + 1 < ntl.length + 1)
+                d += "+";
         }
-        ans.push(d);
+        ans.push(d + ")");
     }
     return ans;
 }
@@ -267,13 +271,13 @@ function getTF(firstNode) {
     var denumerator = getDelta();
     var deez = getDeltas();
     for (let i = 0; i < paths.length; i++) {
-        numerator+="(";
-        for (let j = 0; j < paths[i].length-1; j++) {
-            numerator+=g.edge(paths[i][j],paths[i][j+1]);
-            if(j < paths[i].length-2)
-                numerator+="*";
+        numerator += "(";
+        for (let j = 0; j < paths[i].length - 1; j++) {
+            numerator += g.edge(paths[i][j], paths[i][j + 1]);
+            if (j < paths[i].length - 2)
+                numerator += "*";
         }
-        numerator+=")*("+deez[i]+")";
+        numerator += ")*(" + deez[i] + ")";
     }
     return numerator + " //// " + denumerator;
 }
