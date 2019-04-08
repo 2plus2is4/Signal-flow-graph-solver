@@ -3,6 +3,8 @@ var app = express();
 
 var _ = require("underscore");
 
+// Create a new directed graph
+
 var uuid = require("uuid-v4");
 app.use(express.static('Public'));
 app.use(express.static('node_modules'));
@@ -16,30 +18,30 @@ app.use(bodyParser.json());
 
 
 var data ={
-	 nodes: [],
-	 edges: [],
-	 options: {
-		 // 	edges: {
-		 //   arrows:'to'
-		 //     }
+	nodes: [],
+	edges: [],
+	options: {
+		// 	edges: {
+		//   arrows:'to'
+		//     }
 
-		 nodes: {
-			 shape: 'dot',
-			 size: 12,
-			 font: {
-				 size: 16,
-				 color: '#ffffff'
-			 },
-			 color:'#FB7E81',
-			 borderWidth: 2
-		 },
-		 edges: {
-			 width: 1,
-			 length:50,
-			 arrows:'to'
+		nodes: {
+			shape: 'dot',
+			size: 12,
+			font: {
+				size: 16,
+				color: '#ffffff'
+			},
+			color:'#FB7E81',
+			borderWidth: 2
+		},
+		edges: {
+			width: 1,
+			length:50,
+			arrows:'to'
 
-		 }
-	 }
+		}
+	}
 };
 
 
@@ -94,9 +96,10 @@ app.delete("/api/node", function(req, res){
 	var deleteNode =req.body.node;
 	var deleteResult ={
 		nodes: [],
-		edges: []
-	};
+		edges: [],
+		ed: []
 
+	};
 
 	var updateNodes =_.filter(data.nodes,function(node){
 		var keep = (node.id !== deleteNode);
@@ -114,9 +117,10 @@ app.delete("/api/node", function(req, res){
 		return keep;
 	});
 
+
+
 	data.nodes =updateNodes;
 	data.edges =updateEdges;
-
 	res.send(deleteResult).end();
 });
 

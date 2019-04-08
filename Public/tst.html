@@ -1,15 +1,85 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>tItLe</title>
-    <script type="text/javascript" src="../node_modules/@dagrejs/graphlib/dist/graphlib.min.js"></script>
-    <script src="../additional.js"></script>
-    <style type="text/css">
+.23456789012345678901234567890123456
+.
+         START   000
+BGN      LDX     #0
+         LDA     #0
+         LDCH    STR2
+         RMO     A,S
+LOOP     LDA     #0
+         LDCH    STR1,X
+         COMPR   A,S
+         JEQ     HERE
+         TIX     LEN
+         JLT     LOOP
+         LDA     NON
+         J       *
+HERE     LDA     #STR1
+         ADDR    X,A
+         J       *
+STR1     BYTE    C'MEATKB'
+STR2     BYTE    C'K'
+NON      RESW    1
+LEN      WORD    6
+         END     BGN
+.................................................
+.23456789012345678901234567890123456
+         START   0000
+         LDA     #0
+         LDX     #0
+RLOOP    TD      INDEV
+         JEQ     RLOOP
+         RD      INDEV
+         ADDR    A,X
+         COMPR   #4
+         JEQ     DONE
+         J       RLOOP
 
-    </style>
-</head>
-<body>
-<h1>yo</h1>
 
-</body>
-</html>
+INDEV    BYTE    C'F3'
+ODEV     BYTE    C'O5'
+...............................................
+.23456789012345678901234567890123456
+         START   0000
+ITR      JSUB    READ
+         COMP    #4
+         JEQ     FIN
+         JSUB    CONV
+         JSUB    WRITE
+         J       ITR
+READ     LDA     #0
+RLOOP    TD      INDEV
+         JEQ     READ
+         RD      INDEV
+         RSUB
+WRITE    TD      ODEV
+         JEQ     WRITE
+         WD      ODEV
+         RSUB
+CONV     SUB     #32
+         RSUB
+FIN      J       *
+INDEV    BYTE    X'F3'
+ODEV     BYTE    X'O5'
+         END
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
