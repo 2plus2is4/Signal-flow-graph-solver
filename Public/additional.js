@@ -249,7 +249,10 @@ function getDelta(loops) {
             if (j + 1 < nonTouchingLoops[i].length)
                 ans += "+";
         }
-        ans += ")";
+        if (nonTouchingLoops[i].length > 0) {
+            ans += ")";
+        }
+
     }
     return ans;
 }
