@@ -226,7 +226,8 @@ function getDelta() {
     ans += "-(";
     for (let i = 0; i < loops.length; i++) {
         ans += getLoopGain(loops[i]);
-        ans += "+";
+        if(i<loops.length-1)
+            ans += "+";
     }
     ans += ")";
     var c = "+";
@@ -247,7 +248,7 @@ function getDelta() {
 function getDeltas() {
     var ans = [];
     var ntl = removeTouched();
-    var d = "(";
+    var d = "1";
     for (let i = 0; i < ntl.length; i++) {
         for (let j = 0; j < ntl[i]; j++) {
             d+=getLoopGain(ntl[i]);
@@ -274,6 +275,7 @@ function getTF(firstNode) {
         }
         numerator+=")*("+deez[i]+")";
     }
+    return numerator + " //// " + denumerator;
 }
 
 //getOtherLoops();
