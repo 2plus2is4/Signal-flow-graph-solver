@@ -74,7 +74,7 @@ function forwardPaths(id) {
     stack.push(id);
     //did i reach the sink?
     console.log(g.node(id));
-    if (g.successors(id).length === 0) {
+    if (g.successors(id).length == 0) {
         var path = stack.slice(0);
         paths.push(path);
     } else {
@@ -220,7 +220,8 @@ function loopDoubleganger(arr1, arr2) {
     return false;
 }
 
-function getDelta(loops) {
+function getDelta() {
+    getNonTouching();
     var ans = "1 ";
     ans += "-(";
     for (let i = 0; i < loops.length; i++) {
@@ -258,9 +259,11 @@ function getDeltas() {
     return ans;
 }
 
-function getTF() {
+function getTF(firstNode) {
+    b4forwardpaths();
+    forwardPaths(firstNode.id);
     var numerator = "";
-    var denumerator = getDelta(loops);
+    var denumerator = getDelta();
     var deez = getDeltas();
     for (let i = 0; i < paths.length; i++) {
         numerator+="(";
