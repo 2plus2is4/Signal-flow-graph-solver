@@ -238,7 +238,13 @@ function getDelta() {
             ans += "(";
         }
         for (let j = 0; j < nonTouchingLoops[i].length; j++) {
-            ans += getLoopGain(loops[nonTouchingLoops[i][j]]);
+            console.log(nonTouchingLoops[i][j]);
+            for(let k = 0;k<nonTouchingLoops[i][j].length;k++){
+                ans += getLoopGain(loops[nonTouchingLoops[i][j][k]]);
+                if(k<nonTouchingLoops[i][j].length-1){
+                    ans+="*";
+                }
+            }
             if (j + 1 < nonTouchingLoops[i].length)
                 ans += "+";
         }
