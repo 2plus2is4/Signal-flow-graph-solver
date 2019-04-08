@@ -126,7 +126,7 @@ function removeTouched() {
 
 //======================================================================
 
-function fillBoolean(touch) {
+function fillBoolean(touch,loops) {
     nonTouchingLoops[0] = [];
     for (let i = 0; i < loops.length - 1; i++) {
         for (let j = i + 1; j < loops.length; j++) {
@@ -138,9 +138,10 @@ function fillBoolean(touch) {
     }
 }
 
-var nonTouchingLoops = [];
 
-function getNonTouching() {
+var nonTouchingLoops = [];
+function getNonTouching(loops) {
+    nonTouchingLoops = [];
     //if we have only 1 loop we dont need to do anytihng
     if (loops.length === 1) {
         return;
@@ -156,7 +157,7 @@ function getNonTouching() {
         touch.push(touch1);
     }
     //get each 2 touched loops
-    fillBoolean(touch);
+    fillBoolean(touch,loops);
     //for more than 2
     for (let i = 1; i < loops.length; i++) {
         nonTouchingLoops[i] = [];
@@ -279,6 +280,8 @@ function getTF(firstNode) {
                 numerator += "*";
         }
         numerator += ")*(" + deez[i] + ")";
+        if(i < paths.length-1)
+            numerator+="+";
     }
     return numerator + " //// " + denumerator;
 }
