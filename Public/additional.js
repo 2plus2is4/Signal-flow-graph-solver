@@ -30,26 +30,21 @@ Graph = graphlib.Graph;
 //var g2 = graphlib.json.read(JSON.parse(str));
 // console.log(graphlib.json.write(g));
 
-
-
-
-function setG(graph) {
-    g = graph;
-}
 var stack = [];
 //all forward paths
 var paths = [];
 var loops = [];
+
 /**
  * find them paths and loops
  * @param id the targeted node
  */
 
 function b4forwardpaths() {
-    console.log(stack=[]);
+    console.log(stack = []);
     console.log(g);
-    console.log(paths=[]);
-    console.log(loops=[]);
+    console.log(paths = []);
+    console.log(loops = []);
 }
 
 function forwardPaths(id) {
@@ -99,25 +94,21 @@ function forwardPaths(id) {
 
 /**
  *
- *
- * @param loops
- * @param paths
  * @returns array of loops the same size as the paths {any[]}
  */
-function removeTouched(loops, paths) {
+function removeTouched() {
     //3d array
-    var UntouchedLoops = new Array();
+    var UntouchedLoops = [];
     //2d array
-    var loop = new Array();
+    var loop = [];
     for (let i = 0; i < paths.length; i++) {
         var flag = true;
-
         for (let ii = 0; ii < loops.length; ii++) {
-
             for (let iii = 0; iii < loops[ii].length; iii++) {
-                //checks if it contains  a loop touching a path
+                //checks if it contains a loop touching a path
                 if (paths[i].includes(loops[ii][iii])) {
                     flag = false;
+                    break;
                 }
             }
             //pushing the loop
@@ -127,9 +118,8 @@ function removeTouched(loops, paths) {
             }
             flag = true;
         }
-        UntouchedLoops.push(loop);
+        UntouchedLoops.push(loop.slice(0));
         loop = [];
-
     }
     return UntouchedLoops;
 }
@@ -138,7 +128,7 @@ function removeTouched(loops, paths) {
 
 function fillBoolean(touch) {
     nonTouchingLoops[0] = [];
-    for (let i = 0; i < loops.length-1; i++) {
+    for (let i = 0; i < loops.length - 1; i++) {
         for (let j = i + 1; j < loops.length; j++) {
             if (!intersect(loops[i], loops[j])) {
                 touch[i][j] = false;
@@ -147,7 +137,9 @@ function fillBoolean(touch) {
         }
     }
 }
+
 var nonTouchingLoops = [];
+
 function getNonTouching() {
     //if we have only 1 loop we dont need to do anytihng
     if (loops.length === 1) {
@@ -176,7 +168,7 @@ function getNonTouching() {
                     temp.push(nonTouchingLoops[i - 1][j][k]);
                     if (!nonTouchingLoops[i - 1][j].includes(l)) {
                         flag |= touch[nonTouchingLoops[i - 1][j][k]][l];
-                    }else {
+                    } else {
                         flag = true;
                     }
                 }
@@ -230,29 +222,55 @@ function loopDoubleganger(arr1, arr2) {
 
 function getDelta(loops) {
     var ans = "1 ";
+    ans += "-(";
     for (let i = 0; i < loops.length; i++) {
-        ans += "-";
         ans += getLoopGain(loops[i]);
+        ans += "+";
     }
+    ans += ")";
+    var c = "+";
     for (let i = 0; i < nonTouchingLoops.length; i++) {
-        var c = "+";
-        if ((i + 1) % 2 === 0)
-            c = "-";
+        c = ((i + 1) % 2 === 0) ? "-" : "+";
+        ans += c;
+        ans += "(";
         for (let j = 0; j < nonTouchingLoops[i].length; j++) {
-            ans += c;
             ans += getLoopGain(nonTouchingLoops[i][j]);
+            if (j + 1 < nonTouchingLoops[i].length)
+                ans += "+";
         }
+        ans += ")";
     }
     return ans;
 }
 
 function getDeltas() {
     var ans = [];
-    for (let i = 0; i < paths.length; i++) {
-        ans.push(getDelta(removeTouched(loops, paths)));
+    var ntl = removeTouched();
+    var d = "(";
+    for (let i = 0; i < ntl.length; i++) {
+        for (let j = 0; j < ntl[i]; j++) {
+            d+=getLoopGain(ntl[i]);
+            if(i+1<ntl.length+1)
+                d+="+";
+        }
+        ans.push(d);
     }
-
     return ans;
+}
+
+function getTF() {
+    var numerator = "";
+    var denumerator = getDelta(loops);
+    var deez = getDeltas();
+    for (let i = 0; i < paths.length; i++) {
+        numerator+="(";
+        for (let j = 0; j < paths[i].length-1; j++) {
+            numerator+=g.edge(paths[i][j],paths[i][j+1]);
+            if(j < paths[i].length-2)
+                numerator+="*";
+        }
+        numerator+=")*("+deez[i]+")";
+    }
 }
 
 //getOtherLoops();
