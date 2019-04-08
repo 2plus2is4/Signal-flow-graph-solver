@@ -2,6 +2,7 @@
 <html>
 <head>
     <title>HEllo</title>
+    <link rel="stylesheet" href="index.css">
     <script type="text/javascript" src="vis/dist/vis.js"></script>
     <link href="vis/dist/vis.css" rel="stylesheet" type="text/css">
     <script type="text/javascript" src="jquery/dist/jquery.js"></script>
@@ -193,6 +194,38 @@
 
 
 </script>
-<button type="button" class="btn btn-secondary btn-lg btn-block" onclick="console.log(getTF(firstNode))">Solve Flow Graph</button>
+<!--<button type="button" class="btn btn-secondary btn-lg btn-block" onclick="console.log(getTF(firstNode))">Solve Flow Graph</button>-->
+<p>
+    <a class="btn btn-outline-success" onclick="getTF(firstNode)" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+        Solve Transfare Function
+    </a>
+
+</p>
+<div class="collapse" id="collapseExample">
+    <div class="card card-body">
+        <p id="paths"></p>
+    </div>
+</div>
+<div class="collapse" id="collapseExample">
+    <div class="card card-body">
+        <p id="loops"></p>
+    </div>
+</div>
+<div class="collapse" id="collapseExample">
+    <div class="card card-body">
+        <p id="Mloops"></p>
+    </div>
+</div>
+<div class="collapse" id="collapseExample">
+    <div class="card card-body">
+        &Delta; = <p id="dlta"></p>
+    </div>
+</div>
+<div class="collapse" id="collapseExample">
+    <div class="card card-body">
+        <p id="tf"></p>
+
+    </div>
+</div>
 </body>
 </html>

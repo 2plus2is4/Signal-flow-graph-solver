@@ -254,6 +254,7 @@ function getDelta(loops) {
         }
 
     }
+    document.getElementById("dlta").innerHTML=ans;
     return ans;
 }
 
@@ -269,7 +270,57 @@ function getDeltas() {
     return ans;
 }
 
+function printFrwrdPaths() {
+    var frwrdpaths = "";
+    for (let i=0;i<paths.length;i++){
+        frwrdpaths+="pathNo"+i+": ";
+        for(let ii=0;ii<paths[i].length;ii++){
+            frwrdpaths+=+g.node(paths[i][ii].id)+",";
+        }frwrdpaths+="/n";
+    }
+    document.getElementById("paths").innerHTML=frwrdpaths;
+    return frwrdpaths;
+}
+
+function printIndivLoops() {
+    var ans ="";
+    for (let i = 0; i < loops.length; i++) {
+        ans +="LoopNo"+i+": ";
+        for(let ii=0;ii<loops[i].length;ii++){
+            ans +=g.node(loops[i][ii].id)+",";
+        }
+        ans +="     Gain:"+ getLoopGain(loops[i]);
+        if (i < loops.length - 1)
+            ans += "/n";
+    }
+    document.getElementById("loops").innerHTML=ans;
+    return ans;
+}
+
+function printMulLoops() {
+    var ans="";
+    for (let i = 0; i < nonTouchingLoops.length; i++) {
+
+        for (let j = 0; j < nonTouchingLoops[i].length; j++) {
+            console.log(nonTouchingLoops[i][j]);
+            for(let k = 0;k<nonTouchingLoops[i][j].length;k++){
+                ans += "LoopNo"+nonTouchingLoops[i][j][k];
+                if(k<nonTouchingLoops[i][j].length-1){
+                    ans+=",";
+                }
+            }
+        }
+
+    }
+    document.getElementById("Mloops").innerHTML=ans;
+    return ans;
+}
+
 function getTF(firstNode) {
+    if(firstNode==undefined){
+        alert("you have to draw at least 1 node");
+        return;
+    }
     b4forwardpaths();
     forwardPaths(firstNode.id);
     var numerator = "";
@@ -286,13 +337,10 @@ function getTF(firstNode) {
         if(i < paths.length-1)
             numerator+="+";
     }
-    return numerator + " //// " + denumerator;
+    var test="";
+    test+=printFrwrdPaths()+"/n/n";
+    test+=printIndivLoops()+"/n/n";
+    test+=printMulLoops()+"/n/n";
+    document.getElementById("tf").innerHTML=numerator + " / " + denumerator;
+    return numerator + " / " + denumerator;
 }
-
-//getOtherLoops();
-// forwardPaths("x1");
-// getNonTouching();
-// for (let i = 0; i < loops.length; i++) {
-//     getLoopGain(loops[i]);
-// }
-// getNonTouching();
