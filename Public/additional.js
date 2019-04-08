@@ -220,8 +220,8 @@ function loopDoubleganger(arr1, arr2) {
     return false;
 }
 
-function getDelta() {
-    getNonTouching();
+function getDelta(loops) {
+    getNonTouching(loops);
     var ans = "1 ";
     ans += "-(";
     for (let i = 0; i < loops.length; i++) {
@@ -256,16 +256,11 @@ function getDelta() {
 function getDeltas() {
     var ans = [];
     var ntl = removeTouched();
-    var d = "1";
-    if (ntl.length > 0)
-        d += "-(";
+    // var d = "1";
+    // if (ntl.length > 0)
+    //     d += "-(";
     for (let i = 0; i < ntl.length; i++) {
-        for (let j = 0; j < ntl[i]; j++) {
-            d += getLoopGain(ntl[i]);
-            if (i + 1 < ntl.length + 1)
-                d += "+";
-        }
-        ans.push(d + ")");
+        ans.push(getDelta(ntl[i]));
     }
     return ans;
 }
@@ -274,7 +269,7 @@ function getTF(firstNode) {
     b4forwardpaths();
     forwardPaths(firstNode.id);
     var numerator = "";
-    var denumerator = getDelta();
+    var denumerator = getDelta(loops);
     var deez = getDeltas();
     for (let i = 0; i < paths.length; i++) {
         numerator += "(";

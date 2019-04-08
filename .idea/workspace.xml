@@ -1,17 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5f9a8545-2de8-413f-a089-fc716c062ce7" name="Default Changelist" comment="">
+    <list default="true" id="9df0e728-4ff3-40fa-933a-e160459b8de9" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/control.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/Ahmed.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Public/additional.js" beforeDir="false" afterPath="$PROJECT_DIR$/Public/additional.js" afterDir="false" />
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      <change beforePath="$PROJECT_DIR$/Public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/Public/index.html" afterDir="false" />
->>>>>>> 4d1930a3fb5619fdd1d0b2a4d4ba2a4e81f1fca6
-=======
->>>>>>> 373e422808395b18063e1d31cdc67a3d29e39fa6
     </list>
+    <ignored path="$PROJECT_DIR$/node_modules/" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -21,26 +17,30 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FavoritesManager">
+    <favorites_list name="Signal-flow-graph-solver" />
+  </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+    <leaf>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Public/index.html">
           <provider selected="true" editor-type-id="text-editor">
-<<<<<<< HEAD
-<<<<<<< HEAD
-            <state relative-caret-position="372">
-              <caret line="160" column="8" lean-forward="true" selection-start-line="160" selection-start-column="8" selection-end-line="160" selection-end-column="50" />
-              <folding>
-                <element signature="n#head#0;n#html#0;n#!!top" />
-              </folding>
-=======
-            <state relative-caret-position="224">
-              <caret line="113" column="31" lean-forward="true" selection-start-line="113" selection-start-column="31" selection-end-line="113" selection-end-column="31" />
->>>>>>> 4d1930a3fb5619fdd1d0b2a4d4ba2a4e81f1fca6
-=======
-            <state relative-caret-position="273">
-              <caret line="114" column="38" lean-forward="true" selection-start-line="114" selection-start-column="38" selection-end-line="114" selection-end-column="38" />
->>>>>>> 373e422808395b18063e1d31cdc67a3d29e39fa6
+            <state relative-caret-position="281">
+              <caret line="195" column="86" selection-start-line="195" selection-start-column="86" selection-end-line="195" selection-end-column="86" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Public/index.css">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="23">
+              <caret line="1" column="8" selection-start-line="1" selection-start-column="8" selection-end-line="1" selection-end-column="8" />
             </state>
           </provider>
         </entry>
@@ -48,18 +48,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Public/additional.js">
           <provider selected="true" editor-type-id="text-editor">
-<<<<<<< HEAD
-<<<<<<< HEAD
-            <state relative-caret-position="614">
-              <caret line="258" column="20" selection-start-line="258" selection-start-column="20" selection-end-line="258" selection-end-column="20" />
-=======
-            <state relative-caret-position="832">
-              <caret line="80" column="12" lean-forward="true" selection-start-line="80" selection-start-column="12" selection-end-line="80" selection-end-column="12" />
->>>>>>> 4d1930a3fb5619fdd1d0b2a4d4ba2a4e81f1fca6
-=======
-            <state relative-caret-position="188">
-              <caret line="166" column="29" selection-start-line="166" selection-start-column="29" selection-end-line="166" selection-end-column="29" />
->>>>>>> 373e422808395b18063e1d31cdc67a3d29e39fa6
+            <state relative-caret-position="141">
+              <caret line="261" column="42" selection-start-line="261" selection-start-column="42" selection-end-line="261" selection-end-column="42" />
             </state>
           </provider>
         </entry>
@@ -67,19 +57,13 @@
     </leaf>
   </component>
   <component name="Git.Settings">
-    <option name="ROOT_SYNC" value="DONT_SYNC" />
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Public/tst.html" />
-        <option value="$PROJECT_DIR$/temp.json" />
         <option value="$PROJECT_DIR$/gitignore" />
-        <option value="$PROJECT_DIR$/README.md" />
-        <option value="$PROJECT_DIR$/index.js" />
-        <option value="$PROJECT_DIR$/node_modules/lol" />
-        <option value="$PROJECT_DIR$/additional.js" />
+        <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/Public/index.html" />
         <option value="$PROJECT_DIR$/Public/additional.js" />
       </list>
@@ -91,9 +75,7 @@
     <option name="width" value="1026" />
     <option name="height" value="546" />
   </component>
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
-    <ConfirmationsSetting value="1" id="Add" />
-  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
@@ -120,15 +102,9 @@
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/Public/additional.js" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="project.propDebugger" />
-  </component>
-  <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\Ahmed\Desktop\Signal-flow-graph-solver" />
-      <recent name="C:\Users\Ahmed\Desktop\Signal-flow-graph-solver\Public" />
-    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -142,16 +118,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JavaScript Debug.index.html">
-    <configuration name="index.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/Signal-flow-graph-solver/Public/index.html" useBuiltInWebServerPort="true">
-      <method v="2" />
-    </configuration>
-    <configuration name="tst.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/Signal-flow-graph-solver/Public/tst.html" useBuiltInWebServerPort="true">
-      <method v="2" />
-    </configuration>
-    <configuration name="additional.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/additional.js" working-dir="$PROJECT_DIR$">
-      <method v="2" />
-    </configuration>
+  <component name="RunManager">
     <configuration name="start" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/package.json" />
       <command value="run" />
@@ -162,23 +129,9 @@
       <envs />
       <method v="2" />
     </configuration>
-    <configuration name="test" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
-      <package-json value="$PROJECT_DIR$/package.json" />
-      <command value="run" />
-      <scripts>
-        <script value="test" />
-      </scripts>
-      <node-interpreter value="project" />
-      <envs />
-      <method v="2" />
-    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="npm.start" />
-        <item itemvalue="npm.test" />
-        <item itemvalue="JavaScript Debug.index.html" />
-        <item itemvalue="JavaScript Debug.tst.html" />
-        <item itemvalue="Node.js.additional.js" />
       </list>
     </recent_temporary>
   </component>
@@ -187,375 +140,124 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="5f9a8545-2de8-413f-a089-fc716c062ce7" name="Default Changelist" comment="" />
-      <created>1553003251428</created>
+      <changelist id="9df0e728-4ff3-40fa-933a-e160459b8de9" name="Default Changelist" comment="" />
+      <created>1554727072451</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1553003251428</updated>
-      <workItem from="1553003257311" duration="169000" />
-      <workItem from="1553003474924" duration="7524000" />
-      <workItem from="1553175005619" duration="5495000" />
-<<<<<<< HEAD
-      <workItem from="1553192102072" duration="529000" />
-      <workItem from="1553285737164" duration="8869000" />
-      <workItem from="1553334056385" duration="4477000" />
-      <workItem from="1553342602639" duration="1943000" />
-      <workItem from="1553415412649" duration="2489000" />
-      <workItem from="1553438288050" duration="8720000" />
-      <workItem from="1553460256918" duration="812000" />
-      <workItem from="1553543145134" duration="3682000" />
-      <workItem from="1553583462801" duration="640000" />
-      <workItem from="1553588091237" duration="6136000" />
-      <workItem from="1553609289718" duration="3884000" />
-=======
-      <workItem from="1553192102072" duration="6702000" />
-      <workItem from="1553256918903" duration="3566000" />
-      <workItem from="1553266436902" duration="1639000" />
-      <workItem from="1553273990127" duration="4578000" />
-      <workItem from="1553291697842" duration="1401000" />
-      <workItem from="1553372143725" duration="694000" />
-      <workItem from="1553451748331" duration="683000" />
-      <workItem from="1553536226545" duration="4651000" />
-<<<<<<< HEAD
-      <workItem from="1553605736535" duration="6234000" />
->>>>>>> 4d1930a3fb5619fdd1d0b2a4d4ba2a4e81f1fca6
-=======
-      <workItem from="1553605736535" duration="8647000" />
-      <workItem from="1553616089788" duration="1981000" />
->>>>>>> 373e422808395b18063e1d31cdc67a3d29e39fa6
+      <updated>1554727072451</updated>
+      <workItem from="1554727077023" duration="7057000" />
     </task>
-    <task id="LOCAL-00001" summary="forward paths on acyclic graph">
-      <created>1553006033271</created>
+    <task id="LOCAL-00001" summary="gitignore">
+      <created>1554727237493</created>
       <option name="number" value="00001" />
       <option name="presentableId" value="LOCAL-00001" />
       <option name="project" value="LOCAL" />
-      <updated>1553006033272</updated>
+      <updated>1554727237493</updated>
     </task>
-    <task id="LOCAL-00002" summary="forward paths on acyclic&amp;cyclic graph">
-      <created>1553006760178</created>
+    <task id="LOCAL-00002" summary="gitignore">
+      <created>1554727326006</created>
       <option name="number" value="00002" />
       <option name="presentableId" value="LOCAL-00002" />
       <option name="project" value="LOCAL" />
-      <updated>1553006760178</updated>
+      <updated>1554727326006</updated>
     </task>
-    <task id="LOCAL-00003" summary="adding the pathfinder function to index.html">
-      <created>1553192682283</created>
+    <task id="LOCAL-00003" summary="cmon">
+      <created>1554729481455</created>
       <option name="number" value="00003" />
       <option name="presentableId" value="LOCAL-00003" />
       <option name="project" value="LOCAL" />
-      <updated>1553192682283</updated>
+      <updated>1554729481455</updated>
     </task>
-    <task id="LOCAL-00004" summary="adding the pathfinder function to index.html pt.2">
-      <created>1553192710173</created>
+    <task id="LOCAL-00004" summary="cmon">
+      <created>1554731094876</created>
       <option name="number" value="00004" />
       <option name="presentableId" value="LOCAL-00004" />
       <option name="project" value="LOCAL" />
-      <updated>1553192710173</updated>
+      <updated>1554731094876</updated>
     </task>
-    <task id="LOCAL-00005" summary="50%">
-      <created>1553266719051</created>
+    <task id="LOCAL-00005" summary="cmonman">
+      <created>1554732890493</created>
       <option name="number" value="00005" />
       <option name="presentableId" value="LOCAL-00005" />
       <option name="project" value="LOCAL" />
-      <updated>1553266719051</updated>
+      <updated>1554732890493</updated>
     </task>
-    <task id="LOCAL-00006" summary="75%">
-      <created>1553268013466</created>
+    <task id="LOCAL-00006" summary="im bored">
+      <created>1554733855478</created>
       <option name="number" value="00006" />
       <option name="presentableId" value="LOCAL-00006" />
       <option name="project" value="LOCAL" />
-      <updated>1553268013466</updated>
+      <updated>1554733855478</updated>
     </task>
-    <task id="LOCAL-00007" summary="75%">
-      <created>1553276935125</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1553276935125</updated>
-    </task>
-    <task id="LOCAL-00008" summary="95%">
-      <created>1553292354622</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1553292354622</updated>
-    </task>
-    <task id="LOCAL-00009" summary="96%">
-      <created>1553292459182</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1553292459182</updated>
-    </task>
-    <task id="LOCAL-00010" summary="97%">
-      <created>1553540911255</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1553540911255</updated>
-    </task>
-    <task id="LOCAL-00011" summary="97.5%">
-      <created>1553612757812</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1553612757812</updated>
-    </task>
-    <task id="LOCAL-00012" summary="97.6%">
-      <created>1553613739921</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1553613739921</updated>
-    </task>
-    <option name="localTasksCounter" value="13" />
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-<<<<<<< HEAD
-<<<<<<< HEAD
-    <option name="totallyTimeSpent" value="66250000" />
-=======
-    <option name="totallyTimeSpent" value="43336000" />
->>>>>>> 4d1930a3fb5619fdd1d0b2a4d4ba2a4e81f1fca6
-=======
-    <option name="totallyTimeSpent" value="47730000" />
->>>>>>> 373e422808395b18063e1d31cdc67a3d29e39fa6
+    <option name="totallyTimeSpent" value="7057000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.596875" visible="true" weight="0.18377976" />
-      <window_info id="Structure" order="1" sideWeight="0.4" side_tool="true" weight="0.18377976" />
-      <window_info id="npm" order="2" sideWeight="0.403125" side_tool="true" visible="true" weight="0.18377976" />
-      <window_info id="Favorites" order="3" side_tool="true" />
+      <window_info id="npm" order="0" sideWeight="0.34634146" side_tool="true" weight="0.25" />
+      <window_info id="Favorites" order="1" sideWeight="0.34634146" side_tool="true" weight="0.25" />
+      <window_info content_ui="combo" id="Project" order="2" sideWeight="0.65368855" visible="true" weight="0.25416037" />
+      <window_info anchor="bottom" id="Docker" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" />
+      <window_info anchor="bottom" id="Terminal" />
+      <window_info anchor="bottom" id="Event Log" sideWeight="0.50075644" side_tool="true" weight="0.20130932" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.4762684" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.3666121" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49924356" visible="true" weight="0.22913256" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="8" weight="0.3289689" />
-      <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" weight="0.3289689" />
-      <window_info anchor="bottom" id="Terminal" order="10" weight="0.3289689" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info active="true" anchor="right" id="Structure" order="3" sideWeight="0.3470226" side_tool="true" visible="true" weight="0.17397882" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State>
-              <option name="RECENTLY_FILTERED_USER_GROUPS">
-                <collection />
-              </option>
-              <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
-                <collection />
-              </option>
-              <option name="COLUMN_ORDER">
-                <list>
-                  <option value="0" />
-                  <option value="1" />
-                  <option value="2" />
-                  <option value="3" />
-                </list>
-              </option>
-            </State>
-          </value>
-        </entry>
-      </map>
-    </option>
-    <option name="RECENT_FILTERS">
-      <map>
-        <entry key="Branch">
-          <value>
-            <list />
-          </value>
-        </entry>
-        <entry key="User">
-          <value>
-            <list />
-          </value>
-        </entry>
-      </map>
-    </option>
-  </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="forward paths on acyclic graph" />
-    <MESSAGE value="forward paths on acyclic&amp;cyclic graph" />
-    <MESSAGE value="adding the pathfinder function to index.html" />
-    <MESSAGE value="adding the pathfinder function to index.html pt.2" />
-    <MESSAGE value="50%" />
-    <MESSAGE value="75%" />
-    <MESSAGE value="95%" />
-    <MESSAGE value="96%" />
-    <MESSAGE value="97%" />
-    <MESSAGE value="97.5%" />
-    <MESSAGE value="97.6%" />
-    <option name="LAST_COMMIT_MESSAGE" value="97.6%" />
-  </component>
-  <component name="XDebuggerManager">
-    <watches-manager>
-      <configuration name="JavascriptDebugType">
-        <watch expression="nonTouchingLoops[i - 1][j]" />
-      </configuration>
-    </watches-manager>
+    <MESSAGE value="gitignore" />
+    <MESSAGE value="cmon" />
+    <MESSAGE value="cmonman" />
+    <MESSAGE value="im bored" />
+    <option name="LAST_COMMIT_MESSAGE" value="im bored" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external/lib.es2015.core.d.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="333">
-          <caret line="30" column="4" selection-start-line="30" selection-start-column="4" selection-end-line="30" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external/lib.es2016.array.include.d.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="26" column="4" selection-start-line="26" selection-start-column="4" selection-end-line="26" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/temp.json" />
-    <entry file="file://$PROJECT_DIR$/node_modules/underscore/underscore.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/gitignore">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="41">
-          <caret line="1" column="7" lean-forward="true" selection-start-line="1" selection-start-column="7" selection-end-line="1" selection-end-column="7" />
+        <state>
+          <caret column="1" selection-end-line="1" selection-end-column="8" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/index.js">
+    <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="720">
-          <caret line="24" column="2" selection-start-line="24" selection-start-column="2" selection-end-line="24" selection-end-column="2" />
+        <state relative-caret-position="23">
+          <caret line="1" column="8" selection-start-line="1" selection-start-column="8" selection-end-line="1" selection-end-column="8" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Public/tst.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="207">
-          <caret line="9" column="7" selection-start-line="9" selection-start-column="7" selection-end-line="9" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lol">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="782">
-          <caret line="34" column="27" lean-forward="true" selection-start-line="34" selection-start-column="27" selection-end-line="34" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="46">
-            <caret line="2" lean-forward="true" selection-start-line="2" selection-end-line="2" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
-<<<<<<< HEAD
-    <entry file="file://$PROJECT_DIR$/additional.js" />
-    <entry file="file://$PROJECT_DIR$/node_modules/@dagrejs/graphlib/lib/graph.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5676">
-          <caret line="258" column="38" lean-forward="true" selection-start-line="258" selection-start-column="38" selection-end-line="258" selection-end-column="38" />
-=======
-    <entry file="file://$PROJECT_DIR$/node_modules/@dagrejs/graphlib/lib/graph.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="163">
-          <caret line="138" selection-start-line="138" selection-end-line="138" />
->>>>>>> 4d1930a3fb5619fdd1d0b2a4d4ba2a4e81f1fca6
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$APPLICATION_HOME_DIR$/lib/platform-impl.jar!/resources/html5-schema/html5/web-forms.rnc">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="128">
-          <caret line="506" column="16" selection-start-line="506" selection-start-column="16" selection-end-line="506" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$APPLICATION_HOME_DIR$/lib/platform-impl.jar!/resources/html5-schema/html5/common.rnc">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="128">
-          <caret line="127" column="18" selection-start-line="127" selection-start-column="18" selection-end-line="127" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-<<<<<<< HEAD
-<<<<<<< HEAD
-    <entry file="file://$PROJECT_DIR$/Public/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="372">
-          <caret line="160" column="8" lean-forward="true" selection-start-line="160" selection-start-column="8" selection-end-line="160" selection-end-column="50" />
-          <folding>
-            <element signature="n#head#0;n#html#0;n#!!top" />
-          </folding>
-=======
-    <entry file="file://$PROJECT_DIR$/additional.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="177">
-          <caret line="23" column="17" lean-forward="true" selection-start-line="23" selection-start-column="17" selection-end-line="23" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-=======
-    <entry file="file://$PROJECT_DIR$/additional.js" />
->>>>>>> 373e422808395b18063e1d31cdc67a3d29e39fa6
-    <entry file="file://$PROJECT_DIR$/../additional.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="161">
-          <caret line="7" column="11" lean-forward="true" selection-end-line="249" />
->>>>>>> 4d1930a3fb5619fdd1d0b2a4d4ba2a4e81f1fca6
-        </state>
-      </provider>
+    <entry file="file://$PROJECT_DIR$/Public/index.css">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/Public/index.html">
       <provider selected="true" editor-type-id="text-editor">
-<<<<<<< HEAD
-<<<<<<< HEAD
-        <state relative-caret-position="614">
-          <caret line="258" column="20" selection-start-line="258" selection-start-column="20" selection-end-line="258" selection-end-column="20" />
-=======
-        <state relative-caret-position="832">
-          <caret line="80" column="12" lean-forward="true" selection-start-line="80" selection-start-column="12" selection-end-line="80" selection-end-column="12" />
-=======
-        <state relative-caret-position="273">
-          <caret line="114" column="38" lean-forward="true" selection-start-line="114" selection-start-column="38" selection-end-line="114" selection-end-column="38" />
->>>>>>> 373e422808395b18063e1d31cdc67a3d29e39fa6
+        <state relative-caret-position="281">
+          <caret line="195" column="86" selection-start-line="195" selection-start-column="86" selection-end-line="195" selection-end-column="86" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Public/additional.js">
       <provider selected="true" editor-type-id="text-editor">
-<<<<<<< HEAD
-        <state relative-caret-position="224">
-          <caret line="113" column="31" lean-forward="true" selection-start-line="113" selection-start-column="31" selection-end-line="113" selection-end-column="31" />
->>>>>>> 4d1930a3fb5619fdd1d0b2a4d4ba2a4e81f1fca6
-=======
-        <state relative-caret-position="188">
-          <caret line="166" column="29" selection-start-line="166" selection-start-column="29" selection-end-line="166" selection-end-column="29" />
->>>>>>> 373e422808395b18063e1d31cdc67a3d29e39fa6
+        <state relative-caret-position="141">
+          <caret line="261" column="42" selection-start-line="261" selection-start-column="42" selection-end-line="261" selection-end-column="42" />
         </state>
       </provider>
     </entry>
