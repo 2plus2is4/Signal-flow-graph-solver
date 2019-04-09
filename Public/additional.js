@@ -254,29 +254,34 @@ function getDelta(loops) {
         }
 
     }
-    document.getElementById("dlta").innerHTML=ans;
     return ans;
 }
 
 function getDeltas() {
     var ans = [];
+    var d = "";
     var ntl = removeTouched();
     // var d = "1";
     // if (ntl.length > 0)
     //     d += "-(";
     for (let i = 0; i < ntl.length; i++) {
-        ans.push(getDelta(ntl[i]));
+        var temp = getDelta(ntl[i]);
+        ans.push(temp);
+        d+="Δ"+(i+1)+"= "+temp+"\n";
     }
+    document.getElementById("dltas").innerHTML=d;
     return ans;
 }
 
 function printFrwrdPaths() {
     var frwrdpaths = "";
     for (let i=0;i<paths.length;i++){
-        frwrdpaths+="pathNo"+i+": ";
+        frwrdpaths+="pathNo"+(i+1)+": ";
         for(let ii=0;ii<paths[i].length;ii++){
-            frwrdpaths+=+g.node(paths[i][ii].id)+",";
-        }frwrdpaths+="/n";
+            console.log(paths[i][ii]);
+            console.log(g.node(paths[i][ii]));
+            frwrdpaths+=g.node(paths[i][ii])+",";
+        }frwrdpaths+="\n";
     }
     document.getElementById("paths").innerHTML=frwrdpaths;
     return frwrdpaths;
@@ -285,13 +290,13 @@ function printFrwrdPaths() {
 function printIndivLoops() {
     var ans ="";
     for (let i = 0; i < loops.length; i++) {
-        ans +="LoopNo"+i+": ";
+        ans +="LoopNo"+(i+1)+": ";
         for(let ii=0;ii<loops[i].length;ii++){
-            ans +=g.node(loops[i][ii].id)+",";
+            ans +=g.node(loops[i][ii])+",";
         }
         ans +="     Gain:"+ getLoopGain(loops[i]);
         if (i < loops.length - 1)
-            ans += "/n";
+            ans += "\n";
     }
     document.getElementById("loops").innerHTML=ans;
     return ans;
@@ -300,15 +305,17 @@ function printIndivLoops() {
 function printMulLoops() {
     var ans="";
     for (let i = 0; i < nonTouchingLoops.length; i++) {
-
+        if(nonTouchingLoops[i].length>0)
+            ans+=(i+2)+" Untouched Loops: ";
         for (let j = 0; j < nonTouchingLoops[i].length; j++) {
             console.log(nonTouchingLoops[i][j]);
             for(let k = 0;k<nonTouchingLoops[i][j].length;k++){
-                ans += "LoopNo"+nonTouchingLoops[i][j][k];
+                ans += "LoopNo"+(nonTouchingLoops[i][j][k]+1);
                 if(k<nonTouchingLoops[i][j].length-1){
                     ans+=",";
                 }
             }
+            ans+="\n";
         }
 
     }
@@ -325,6 +332,7 @@ function getTF(firstNode) {
     forwardPaths(firstNode.id);
     var numerator = "";
     var denumerator = getDelta(loops);
+    test+=printMulLoops()+"/n/n";
     var deez = getDeltas();
     for (let i = 0; i < paths.length; i++) {
         numerator += "(";
@@ -340,7 +348,7 @@ function getTF(firstNode) {
     var test="";
     test+=printFrwrdPaths()+"/n/n";
     test+=printIndivLoops()+"/n/n";
-    test+=printMulLoops()+"/n/n";
+    document.getElementById("dlta").innerHTML=denumerator;
     document.getElementById("tf").innerHTML=numerator + " / " + denumerator;
     return numerator + " / " + denumerator;
 }
