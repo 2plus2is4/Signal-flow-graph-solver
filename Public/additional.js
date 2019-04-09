@@ -262,6 +262,7 @@ function getDelta(loops) {
 function getDeltas() {
     var ans = [];
     var d = "";
+    d+="<p style=\"fill: black;font-size: larger\">Δ(i)=</p>";
     var ntl = removeTouched();
     // var d = "1";
     // if (ntl.length > 0)
@@ -277,6 +278,7 @@ function getDeltas() {
 
 function printFrwrdPaths() {
     var frwrdpaths = "";
+    frwrdpaths+="<p style=\"fill: black;font-size: larger\">Paths:</p>";
     for (let i=0;i<paths.length;i++){
         frwrdpaths+="pathNo"+(i+1)+": ";
         for(let ii=0;ii<paths[i].length;ii++){
@@ -294,8 +296,9 @@ function printFrwrdPaths() {
 
 function printIndivLoops() {
     var ans ="";
+    ans+="<p style=\"fill: black;font-size: larger\">Loops:</p>";
     for (let i = 0; i < loops.length; i++) {
-        ans +="LoopNo"+(i+1)+": ";
+        ans +="L"+(i+1)+": ";
         for(let ii=0;ii<loops[i].length;ii++){
             ans +=g.node(loops[i][ii])+",";
         }
@@ -309,13 +312,15 @@ function printIndivLoops() {
 
 function printMulLoops() {
     var ans="";
+    ans+="<p style=\"fill: black;font-size: larger\">Non Touching Loops:</p>";
     for (let i = 0; i < nonTouchingLoops.length; i++) {
         if(nonTouchingLoops[i].length>0)
-            ans+=(i+2)+" Untouched Loops: ";
+            //ans+=(i+2)+" Untouched Loops: ";
+            ans+="<p style=\"fill: #e00003;font-size: larger\">"+(i+2)+" Untouched Loops:</p>";
         for (let j = 0; j < nonTouchingLoops[i].length; j++) {
             console.log(nonTouchingLoops[i][j]);
             for(let k = 0;k<nonTouchingLoops[i][j].length;k++){
-                ans += "LoopNo"+(nonTouchingLoops[i][j][k]+1);
+                ans += "L"+(nonTouchingLoops[i][j][k]+1);
                 if(k<nonTouchingLoops[i][j].length-1){
                     ans+=",";
                 }
@@ -353,7 +358,7 @@ function getTF(firstNode) {
     var test="";
     test+=printFrwrdPaths()+"/n/n";
     test+=printIndivLoops()+"/n/n";
-    document.getElementById("dlta").innerHTML=denumerator;
-    document.getElementById("tf").innerHTML=numerator + " / " + denumerator;
+    document.getElementById("dlta").innerHTML="<p style=\"fill: black;font-size: larger\">Δ=</p>"+denumerator;
+    document.getElementById("tf").innerHTML="<p style=\"fill: black;font-size: larger\">Transfer Function=</p>"+numerator + " / " + denumerator;
     return numerator + " / " + denumerator;
 }
