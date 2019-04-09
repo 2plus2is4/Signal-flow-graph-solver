@@ -1,34 +1,6 @@
 var imported = document.createElement('script');
 imported.src = 'Public/graphlib.min.js';
-//document.head.appendChild(imported);
-//someshit
 Graph = graphlib.Graph;
-//creating a graph
-// //set nodes
-// g.setNode("x1", "x1");
-// g.setNode("x2", "x2");
-// g.setNode("x3", "x3");
-// g.setNode("x4", "x4");
-// g.setNode("x5", "x5");
-// g.setNode("x6", "x6");
-// //set edges
-// g.setEdge("x1", "x2", "G1");
-// g.setEdge("x2", "x3", "G2");
-// g.setEdge("x3", "x4", "G3");
-// g.setEdge("x2", "x4", "G4");
-// g.setEdge("x3", "x6", "G5");
-// g.setEdge("x1", "x6", "G6");
-// g.setEdge("x6", "x5", "G7");
-// g.setEdge("x5", "x4", "G8");
-// g.setEdge("x2", "x2", "-H1");
-// g.setEdge("x5", "x3", "-H3");
-// g.setEdge("x5", "x1", "-H2");
-//
-// //stack
-// console.log(g.nodes());
-// console.log(g.edges());
-//var g2 = graphlib.json.read(JSON.parse(str));
-// console.log(graphlib.json.write(g));
 
 var stack = [];
 //all forward paths
@@ -88,9 +60,6 @@ function forwardPaths(id) {
     return paths;
 }
 
-// console.log(forwardPaths("x1"));
-// console.log(paths);
-// console.log(loops);
 
 /**
  *
@@ -175,7 +144,7 @@ function getNonTouching(loops) {
                 }
                 if (!flag) {
                     temp.push(l);
-                    nonTouchingLoops[j].push(temp);
+                    nonTouchingLoops[i].push(temp);
                 }
             }
         }
@@ -315,8 +284,7 @@ function printMulLoops() {
     ans+="<p style=\"fill: black;font-size: larger\">Non Touching Loops:</p>";
     for (let i = 0; i < nonTouchingLoops.length; i++) {
         if(nonTouchingLoops[i].length>0)
-            //ans+=(i+2)+" Untouched Loops: ";
-            ans+="<p style=\"fill: #e00003;font-size: large\">"+(i+2)+" Untouched Loops:</p>";
+            ans+="<p style=\"-webkit-text-fill-color: #e00003;font-size: large\">"+(i+2)+" Untouched Loops:</p>";
         for (let j = 0; j < nonTouchingLoops[i].length; j++) {
             console.log(nonTouchingLoops[i][j]);
             for(let k = 0;k<nonTouchingLoops[i][j].length;k++){

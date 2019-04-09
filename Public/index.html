@@ -35,8 +35,7 @@
 
 
 <script type="text/javascript">
-    //imported.src = 'graphlib.m';
-    //var bs = require('bootstrap');
+
     Graph = graphlib.Graph;
     var g = new Graph({directed: true});
     console.log(g);
@@ -103,9 +102,7 @@
                 }
             }
         }
-        // _.each(data.edges,function (edge) {
-        //     g.deleteEdge(edge.to,edge.from);
-        // });
+
         console.log(data);
         console.log(g.nodes());
     };
@@ -160,11 +157,9 @@
     $.get("/api", function (data) {
         data.options.manipulation = {
             addNode: addNode,
-            //editNode: editNode,
             deleteNode: deleteNode,
             addEdge: addEdge,
-            //editEdge: editEdge,
-            //deleteEdge: deleteEdge
+
         };
         var container = document.getElementById("graph");
         var network = new vis.Network(container, data, data.options);
@@ -173,14 +168,7 @@
                 g.setNode(data.nodes[i].id, data.nodes[i].label);
             }
         }
-        // _.each(data.nodes,function (node) {
-        //     if(node.label!=undefined){
-        //         g.setNode(node.id,node.label);
-        //     }
-        // });
-        // _.each(data.edges,function (edge) {
-        //     g.setEdge(edge.to,edge.from);
-        // });
+
         for (let i = 0; i < data.edges.length; i++) {
             var flag1 = false;
             var flag2 = false;
@@ -202,7 +190,6 @@
 
 
 </script>
-<!--<button type="button" class="btn btn-secondary btn-lg btn-block" onclick="console.log(getTF(firstNode))">Solve Flow Graph</button>-->
 <p>
     <a class="btn btn-outline-success" onclick="getTF(firstNode)" data-toggle="collapse" href="#collapseExample"
        role="button" aria-expanded="false" aria-controls="collapseExample">

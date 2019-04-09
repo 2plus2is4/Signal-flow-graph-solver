@@ -21,10 +21,6 @@ var data ={
 	nodes: [],
 	edges: [],
 	options: {
-		// 	edges: {
-		//   arrows:'to'
-		//     }
-
 		nodes: {
 			shape: 'dot',
 			size: 12,
@@ -39,7 +35,6 @@ var data ={
 			width: 1,
 			length:50,
 			arrows:'to'
-
 		}
 	}
 };
