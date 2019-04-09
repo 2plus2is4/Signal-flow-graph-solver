@@ -254,6 +254,8 @@ function getDelta(loops) {
         }
 
     }
+    if(ans==="1 -()")
+        ans="1";
     return ans;
 }
 
@@ -267,7 +269,7 @@ function getDeltas() {
     for (let i = 0; i < ntl.length; i++) {
         var temp = getDelta(ntl[i]);
         ans.push(temp);
-        d+="Δ"+(i+1)+"= "+temp+"\n";
+        d+="Δ"+(i+1)+"= "+temp+'<br />';
     }
     document.getElementById("dltas").innerHTML=d;
     return ans;
@@ -280,8 +282,11 @@ function printFrwrdPaths() {
         for(let ii=0;ii<paths[i].length;ii++){
             console.log(paths[i][ii]);
             console.log(g.node(paths[i][ii]));
-            frwrdpaths+=g.node(paths[i][ii])+",";
-        }frwrdpaths+="\n";
+            frwrdpaths+=g.node(paths[i][ii]);
+            if(ii<paths[i].length-1)
+                frwrdpaths+=",";
+        }
+        frwrdpaths+='<br />';
     }
     document.getElementById("paths").innerHTML=frwrdpaths;
     return frwrdpaths;
@@ -296,7 +301,7 @@ function printIndivLoops() {
         }
         ans +="     Gain:"+ getLoopGain(loops[i]);
         if (i < loops.length - 1)
-            ans += "\n";
+            ans += '<br />';
     }
     document.getElementById("loops").innerHTML=ans;
     return ans;
@@ -315,7 +320,7 @@ function printMulLoops() {
                     ans+=",";
                 }
             }
-            ans+="\n";
+            ans+='<br />';
         }
 
     }
