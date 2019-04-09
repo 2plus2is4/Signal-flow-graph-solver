@@ -316,7 +316,7 @@ function printMulLoops() {
     for (let i = 0; i < nonTouchingLoops.length; i++) {
         if(nonTouchingLoops[i].length>0)
             //ans+=(i+2)+" Untouched Loops: ";
-            ans+="<p style=\"fill: #e00003;font-size: larger\">"+(i+2)+" Untouched Loops:</p>";
+            ans+="<p style=\"fill: #e00003;font-size: large\">"+(i+2)+" Untouched Loops:</p>";
         for (let j = 0; j < nonTouchingLoops[i].length; j++) {
             console.log(nonTouchingLoops[i][j]);
             for(let k = 0;k<nonTouchingLoops[i][j].length;k++){
