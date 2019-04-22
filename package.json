@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon -w . -e html,js -- index.js"
+    "start": "nodemon -w . -e html,js -- index.js",
+    "deploy":"gh-pages -d Public"
   },
   "repository": {
     "type": "git",
@@ -16,12 +17,13 @@
   "bugs": {
     "url": "https://github.com/ahmedezeny/Signal-flow-graph-solver/issues"
   },
-  "homepage": "https://github.com/ahmedezeny/Signal-flow-graph-solver#readme",
+  "homepage": "https://ahmedezeny.github.io/Signal-flow-graph-solver",
   "dependencies": {
     "@dagrejs/graphlib": "^2.1.4",
     "body-parser": "^1.18.3",
     "bootstrap": "^4.3.1",
     "express": "^4.16.4",
+    "gh-pages": "^2.0.1",
     "jquery": "^3.3.1",
     "underscore": "^1.9.1",
     "uuid-v4": "^0.1.0",
