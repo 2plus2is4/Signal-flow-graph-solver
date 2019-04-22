@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>HEllo</title>
+    <link rel="stylesheet" href="index.css">
+    <script type="text/javascript" src="vis/dist/vis.js"></script>
+    <link href="vis/dist/vis.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="jquery/dist/jquery.js"></script>
+    <script type="text/javascript" src="graphlib.min.js"></script>
+    <script type="text/javascript" src="underscore-min.js"></script>
+    <script type="text/javascript" src="additional.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"
+            integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
+            crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+            crossorigin="anonymous"></script>
+    <style>
+        #graph {
+            width: 1530px;
+            height: 550px;
+            border: 1px solid #444444;
+            background-color: #222222;
+        }
+    </style>
+</head>
+<body>
+<div id="input"></div>
+<div id="graph"></div>
+
+
+<script type="text/javascript">
+
+    Graph = graphlib.Graph;
+    var g = new Graph({directed: true});
+    console.log(g);
+    var firstNode;
+    var counter = 0;
+    var addNode = function (data, callback) {
+        if (counter === 0) {
+            (alert("Be aware that this is gonna be your source node"));
+        }
+        var label = prompt("enter the node name: ");
+        if (!label) {
+            return;
+        }
+        data.label = label;
+
+        if (firstNode == null) {
+            firstNode = data;
+            data.fixed = true;
+            console.log(firstNode);
+        }
+        $.post("api/node", data, function (result) {
+            callback(data);
+        });
+
+        g.setNode(data.id, data.label);
+
+        counter++;
+    };
+    var editNode = function (data, callback) {
+        var label = prompt("enter the node name: ", data.label);
+        if (!label) {
+            return;
+        }
+        data.label = label;
+        $.ajax({
+            method: "put",
+            url: "/api/node",
+            data: data,
+            success: function (result) {
+                callback(result);
+            }
+        });
+        g.setNode(data.id, data.label);
+        console.log(g.nodes());
+    };
+    var deleteNode = function (data, callback) {
+        $.ajax({
+            method: "delete",
+            url: "/api/node",
+            data: {node: data.nodes[0]},
+            success: function (result) {
+                callback(result);
+            }
+        });
+        if (firstNode.id == data.nodes[0]) {
+            alert("you've deleted the source node!! if there are still nodes left please refresh the page ")
+        }
+        g.removeNode(data.nodes[0]);
+        for (let i = 0; i < data.edges.length; i++) {
+            for (let ii = 0; ii < g.edges().length; ii++) {
+                if (data.edges[i] == g.edges()[ii].to || data.edges[i] == g.edges()[ii].from) {
+                    g.removeEdge(g.edges()[ii].to, g.edges()[ii].from);
+                    break;
+                }
+            }
+        }
+
+        console.log(data);
+        console.log(g.nodes());
+    };
+    var addEdge = function (data, callback) {
+        var label = prompt("enter the edge name: ");
+        if (!label) {
+            return;
+        }
+        data.label = label;
+        $.post("api/edge", data, function (result) {
+            callback(result);
+        });
+        g.setEdge(data.from, data.to, data.label);
+        console.log(firstNode);
+        console.log(g.edges());
+        console.log(b4forwardpaths());
+        console.log(forwardPaths(firstNode.id));
+        console.log(paths);
+    };
+    var editEdge = function (data, callback) {
+        $.ajax({
+            method: "put",
+            url: "/api/edge",
+            data: data,
+            success: function (result) {
+                callback(result);
+            }
+        });
+        g.setEdge(data.to, data.from, data.label);
+        console.log(g.edges());
+    };
+    var deleteEdge = function (data, callback) {
+        $.ajax({
+            method: "delete",
+            url: "/api/edge",
+            data: {edge: data.edges[0]},
+            success: function (result) {
+                callback(result);
+            }
+        });
+
+        for (let ii = 0; ii < g.edges().length; ii++) {
+            if (data.edges[0] == g.edges()[ii].to || data.edges[0] == g.edges()[ii].from) {
+                g.removeEdge(g.edges()[ii].to, g.edges()[ii].from);
+                break;
+            }
+        }
+
+        console.log(data);
+        console.log(g.edges());
+    };
+    $.get("/api", function (data) {
+        data.options.manipulation = {
+            addNode: addNode,
+            deleteNode: deleteNode,
+            addEdge: addEdge,
+
+        };
+        var container = document.getElementById("graph");
+        var network = new vis.Network(container, data, data.options);
+        for (let i = 0; i < data.nodes.length; i++) {
+            if (data.nodes[i].label != undefined) {
+                g.setNode(data.nodes[i].id, data.nodes[i].label);
+            }
+        }
+
+        for (let i = 0; i < data.edges.length; i++) {
+            var flag1 = false;
+            var flag2 = false;
+            for (let ii = 0; ii < data.nodes.length; ii++) {
+                if (data.edges[i].to == data.nodes[ii].id) {
+                    flag1 = true;
+                } else if (data.edges[i].from == data.nodes[ii].id) {
+                    flag2 = true;
+                }
+            }
+            if (flag1 && flag2) {
+                g.setEdge(data.edges[i].from, data.edges[i].to,data.edges[i].label);
+            }
+
+        }
+
+        firstNode = data.nodes[0];
+    });
+
+
+</script>
+<p>
+    <a class="btn btn-outline-success" onclick="getTF(firstNode)" data-toggle="collapse" href="#collapseExample"
+       role="button" aria-expanded="false" aria-controls="collapseExample">
+        Solve Transfare Function
+    </a>
+
+</p>
+<div class="collapse" id="collapseExample">
+    <div class="card card-body">
+        <p id="paths"></p>
+    </div>
+</div>
+<div class="collapse" id="collapseExample">
+    <div class="card card-body">
+        <p id="loops"></p>
+    </div>
+</div>
+<div class="collapse" id="collapseExample">
+    <div class="card card-body">
+        <p id="Mloops"></p>
+    </div>
+</div>
+<div class="collapse" id="collapseExample">
+    <div class="card card-body">
+        <p id="dlta"></p>
+    </div>
+</div>
+<div class="collapse" id="collapseExample">
+    <div class="card card-body">
+        <p id="dltas"></p>
+    </div>
+</div>
+<div class="collapse" id="collapseExample">
+    <div class="card card-body">
+        <p id="tf"></p>
+
+    </div>
+</div>
+</body>
+</html>
