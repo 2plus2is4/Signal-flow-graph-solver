@@ -144,7 +144,7 @@ function getNonTouching(loops) {
                 }
                 if (!flag) {
                     temp.push(l);
-                    nonTouchingLoops[i].push(temp);
+                    nonTouchingLoops[j].push(temp);
                 }
             }
         }
