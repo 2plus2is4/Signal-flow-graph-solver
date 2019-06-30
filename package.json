@@ -1,12 +1,14 @@
 {
   "name": "control",
   "version": "1.0.0",
+  "homepage": "https://2plus2is4.github.io/Signal-flow-graph-solver",
   "description": "Signal flow garph solver using vis js",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon -w . -e html,js -- index.js",
-    "deploy":"gh-pages -d Public"
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "repository": {
     "type": "git",
@@ -17,7 +19,6 @@
   "bugs": {
     "url": "https://github.com/ahmedezeny/Signal-flow-graph-solver/issues"
   },
-  "homepage": "https://ahmedezeny.github.io/Signal-flow-graph-solver",
   "dependencies": {
     "@dagrejs/graphlib": "^2.1.4",
     "body-parser": "^1.18.3",
